@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const CategoryDetail = ({ categoryName }) => {
+import { getCategoryDetail } from '../../actions/categoriesAction';
 
-  //Fazer as chamadas para o redux
+const CategoryDetail = ({ categoryName, getCategoryDetail }) => {
+  const posts = getCategoryDetail();
+
   return (
     <div>
       <h2>{categoryName}</h2>
@@ -10,4 +13,8 @@ const CategoryDetail = ({ categoryName }) => {
   );
 };
 
-export default CategoryDetail;
+const mapDispatchToProps = (dispatch, { categoryName }) => ({
+    getCategoryDetail: () => dispatch(getCategoryDetail(categoryName))
+});
+
+export default connect(null, mapDispatchToProps)(CategoryDetail);
