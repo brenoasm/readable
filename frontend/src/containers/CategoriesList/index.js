@@ -1,20 +1,35 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+
+
 
 import CategoryCard from '../../components/CategoryCard';
 
-const CategoriesList = ({ categories }) => {
-  return (
-    <Fragment>
-      {categories.map(category =>
-        <CategoryCard key={category.name} category={category} />
-      )}
-    </Fragment>
-  )
+class CategoriesList extends Component {
+  componentDidMount() {
+    this.props.getAllPosts();
+  }
+
+  render() {
+    const { posts, categories } = this.props;
+
+    return (
+      <Fragment>
+        {categories.map(category =>
+          <CategoryCard key={category.name} category={category} />
+        )}
+
+      </Fragment>
+    )
+  }
 };
 
-const mapStateToProps = ({ categoryState }) => ({
-  categories: categoryState.categories
+const mapDispatchToProps = dispatch => ({
+
 });
 
-export default connect(mapStateToProps)(CategoriesList);
+const mapStateToProps = ({ postsState }) => ({
+  posts: getPosts(postsState)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);

@@ -2,12 +2,22 @@ import axios from 'axios';
 
 import { HANDLE_POSTS } from '.';
 
-export const getCategoryPosts = category => (dispatch, getState) => {
+const header = { headers: { 'Authorization': 'whatever-you-want' } };
+
+export const getCategoryPosts = category => dispatch => {
   const url = `http://localhost:3001/${category}/posts`;
 
-  axios.get(url, {headers: { 'Authorization': 'whatever-you-want' }})
+  axios.get(url, header)
     .then(({data}) => dispatch(handlePosts(data)))
     .catch(err => console.log(err))
+};
+
+export const getAllPosts = () => dispatch => {
+  const url = `http://localhost:3001/posts`;
+
+  axios.get(url, header)
+  .then(({data}) => dispatch(handlePosts(data)))
+  .catch(err => console.log(err))
 };
 
 export const handlePosts = posts => ({

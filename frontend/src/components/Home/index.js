@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -10,10 +10,9 @@ const propTypes = {
 
 const Home = ({ children }) => {
   return (
-    <div>
-      <h1>Home!!</h1>
+    <Fragment>
       {children}
-    </div>
+    </Fragment>
   );
 };
 

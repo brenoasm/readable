@@ -20,7 +20,7 @@ const CategoryCard = ({ category }) => (
     <h2>{category.name}</h2>
     <Link to={category.path}>Ver os detalhes</Link>
   </StyledCategoryCard>
-);
+)
 
 CategoryCard.propTypes = propTypes;
 
