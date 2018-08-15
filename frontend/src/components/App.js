@@ -1,84 +1,43 @@
-import React, { Component, Fragment } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getPosts } from '../selectors/postsSelector';
-import { getAllPosts } from '../actions/postsAction';
-
-import Post from '../components/Post';
-import Category from './Category';
+import HomeContainer from '../containers/HomeContainer';
 
 const StyledApp = styled.div`
   display: grid;
+  min-height: 80%;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 80px auto;
-  box-sizing: border-box;
-  margin: 10 0px;
+  grid-template-rows: auto 1fr;
 
   .header {
-    grid-column: 2 / 10;
-    grid-row: 0 / 1;
-
-    ul {
-      display: flex;
-      justify-content: space-around;
-
-      li {
-        list-style-type: none;
-      }
-    }
+    grid-column: 2 / 12;
+    grid-row: 1 / span(1);
   }
 
   .body {
-    grid-column: 2 / 10;
+    background-color: #d8272c;
+    grid-column: 2 / 12;
+    grid-row: 2 / span(1);
   }
 `;
 
-class App extends Component {
-  componentDidMount() {
-    this.props.getAllPosts();
-    // Fazer chamada para carregar as categorias
-  }
+const App = () => {
+  return (
+    <StyledApp>
+      <div className="header">
+        <ul>
 
-  render() {
-    const { categories, posts } = this.props;
-
-    return (
-      <StyledApp>
-        <div className="header">
-          <ul>
-            {Array.isArray(categories) && categories.map(category => (
-              <li key={category.name}>
-                <Link to={category.path}>{category.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="body">
-          <Switch>
-            <Route path="/" exact={true} render={() => (
-              <Fragment>
-                {Array.isArray(posts) && posts.map(post => (
-                  <Post key={post.id} post={post}/>
-                ))}
-              </Fragment>
-            )} />
-            <Route path="/:categoryName" component={Category} />
-          </Switch>
-        </div>
-      </StyledApp>
-    );
-  }
+        </ul>
+      </div>
+      <div className="body">
+        <Switch>
+          <Route path="/" exact={true} component={HomeContainer} />
+          <Route path="/:categoryName" component={HomeContainer} />
+        </Switch>
+      </div>
+    </StyledApp>
+  );
 }
 
-const mapDispatchToProps = dispatch => ({
-  getAllPosts: () => dispatch(getAllPosts())
-});
-
-const mapStateToProps = ({ categoryState, postsState }) => ({
-  categories: categoryState.categories,
-  posts: getPosts(postsState)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
