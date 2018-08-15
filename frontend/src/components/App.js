@@ -11,14 +11,15 @@ const StyledApp = styled.div`
   grid-template-rows: auto 1fr;
 
   .header {
-    grid-column: 2 / 12;
+    min-height: 60px;
+    grid-column: 3 / 11;
     grid-row: 1 / span(1);
   }
 
   .body {
-    background-color: #d8272c;
-    grid-column: 2 / 12;
+    grid-column: 3 / 11;
     grid-row: 2 / span(1);
+    padding: 20px;
   }
 `;
 

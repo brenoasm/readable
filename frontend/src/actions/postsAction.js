@@ -16,8 +16,23 @@ export const getAllPosts = () => dispatch => {
   const url = `http://localhost:3001/posts`;
 
   axios.get(url, header)
-  .then(({data}) => dispatch(handlePosts(data)))
-  .catch(err => console.log(err))
+    .then(({data}) => dispatch(handlePosts(data)))
+    .catch(err => console.log(err))
+};
+
+export const modifyPostVoteValues = (post, vote) => dispatch => {
+  const url = `http://localhost:3001/posts/${post.id}`;
+
+  const body = {
+    option: vote
+  };
+
+  axios.post(url, body, header)
+    .then(({data}) => {
+      debugger
+      return null;
+    })
+    .catch(err => console.log(err))
 };
 
 export const handlePosts = posts => ({

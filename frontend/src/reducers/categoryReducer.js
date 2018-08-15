@@ -2,15 +2,19 @@
 const initialState = {
   categories: [
     {
-      name: 'react',
+      name: 'Home',
+      path: ''
+    },
+    {
+      name: 'React',
       path: 'react'
     },
     {
-      name: 'redux',
+      name: 'Redux',
       path: 'redux'
     },
     {
-      name: 'udacity',
+      name: 'Udacity',
       path: 'udacity'
     }
   ]

@@ -1,46 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
 
 import { getPosts } from '../../selectors/postsSelector';
 import { getAllPosts, getCategoryPosts } from '../../actions/postsAction';
 
-class HomeContainer extends Component {
-  checkWichPostsToLoad() {
-    const categoryName = this.props.match.params.categoryName;
+import Home from '../../components/Home';
 
-    if (!!categoryName) this.props.getCategoryPosts(categoryName);
-    else this.props.getAllPosts();
+class HomeContainer extends Component {
+  checkWichPostsToLoad = (categoryName) => {
+    const { getCategoryPosts, getAllPosts } = this.props;
+
+    !!categoryName ? getCategoryPosts(categoryName) : getAllPosts();
+  }
+
+  componentWillReceiveProps({ location, match }){
+    if (location.pathname !== this.props.location.pathname) {
+      this.checkWichPostsToLoad(match.params.categoryName);
+    }
   }
 
   componentDidMount() {
-    this.checkWichPostsToLoad();
-  }
-
-  componentDidUpdate() {
-    this.checkWichPostsToLoad();
+    this.checkWichPostsToLoad(this.props.match.params.categoryName);
   }
 
   render() {
     const { posts, categories } = this.props;
 
     return (
-      <div style={{ display: "flex", justifyContent: "space-between"}}>
-        <div style={{display: "flex", flexDirection : "column"}}>
-          {Array.isArray(categories) && categories.map(category => (
-            <Link to={category.path}>{category.name}</Link>
-          ))}
-        </div>
-        <div>
-          <ul style={{display: "flex", flexDirection : "column"}}>
-            {Array.isArray(posts) && posts.map(post => (
-              <li>
-                {post.title}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <Home posts={posts} categories={categories} />
     );
   }
 }
@@ -55,4 +44,7 @@ const mapStateToProps = ({ categoryState, postsState }) => ({
   posts: getPosts(postsState)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(HomeContainer);
