@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { HANDLE_POSTS } from '.';
+import { HANDLE_POSTS, UPDATE_POST } from '.';
 
 const header = { headers: { 'Authorization': 'whatever-you-want' } };
 
@@ -28,9 +28,18 @@ export const modifyPostVoteValues = (post, vote) => dispatch => {
   };
 
   axios.post(url, body, header)
-    .then(({data}) => {
+    .then(({data}) => dispatch(updatePost(data)))
+    .catch(err => console.log(err))
+};
+
+export const getPost = id => dispatch => {
+  const url = `http://localhost:3001/posts/${id}`;
+
+  axios.get(url, header)
+    .then(({post}) => {
+
+      // CRIAR O GET PARA O POST E SEUS COMENTÁRIOS
       debugger
-      return null;
     })
     .catch(err => console.log(err))
 };
@@ -38,4 +47,9 @@ export const modifyPostVoteValues = (post, vote) => dispatch => {
 export const handlePosts = posts => ({
   type: HANDLE_POSTS,
   payload: posts
+});
+
+export const updatePost = post => ({
+  type: UPDATE_POST,
+  payload: post
 });

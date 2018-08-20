@@ -4,7 +4,10 @@ import { withRouter } from 'react-router';
 import { compose } from 'redux';
 
 import { getPosts } from '../../selectors/postsSelector';
-import { getAllPosts, getCategoryPosts } from '../../actions/postsAction';
+import {
+  getAllPosts,
+  getCategoryPosts,
+  modifyPostVoteValues } from '../../actions/postsAction';
 
 import Home from '../../components/Home';
 
@@ -26,17 +29,18 @@ class HomeContainer extends Component {
   }
 
   render() {
-    const { posts, categories } = this.props;
+    const { posts, categories, modifyVotes } = this.props;
 
     return (
-      <Home posts={posts} categories={categories} />
+      <Home posts={posts} categories={categories} modifyVotes={modifyVotes} />
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   getAllPosts: () => dispatch(getAllPosts()),
-  getCategoryPosts: categoryName => dispatch(getCategoryPosts(categoryName))
+  getCategoryPosts: categoryName => dispatch(getCategoryPosts(categoryName)),
+  modifyVotes: (post, vote) => dispatch(modifyPostVoteValues(post, vote))
 });
 
 const mapStateToProps = ({ categoryState, postsState }) => ({
