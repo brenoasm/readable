@@ -1,11 +1,17 @@
-import { HANDLE_POSTS, UPDATE_POST } from '../actions/index';
+import { HANDLE_POST, HANDLE_POSTS, UPDATE_POST } from '../actions/index';
 
 const initialState = {
-  posts: []
+  posts: [],
+  post: null,
 };
 
 const PostsReducer = (state = initialState, action) => {
   switch(action.type) {
+    case HANDLE_POST:
+      return {
+        ...state,
+        post: action.payload
+      }
     case HANDLE_POSTS:
       return {
         ...state,

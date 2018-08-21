@@ -16,7 +16,7 @@ const StyledPostRowTitle = styled.div`
 
 const PostRowTitle = ({ post }) => (
   <StyledPostRowTitle>
-    <Link to="/">
+    <Link to={`/posts/${post.id}`}>
       {post.title}&nbsp;
       <i title="Clique para ver a postagem" className="fas fa-link"></i>
     </Link>
