@@ -9,6 +9,11 @@ import {
   getCategoryPosts,
   modifyPostVoteValues } from '../../actions/postsAction';
 
+import {
+  getSortMethods,
+  getSelectedSortMethod } from '../../selectors/sortMethodsSelector';
+import { handleSortMethod } from '../../actions/sortMethodAction';
+
 import Home from '../../components/Home';
 
 class HomeContainer extends Component {
@@ -29,10 +34,8 @@ class HomeContainer extends Component {
   }
 
   render() {
-    const { posts, categories, modifyVotes } = this.props;
-
     return (
-      <Home posts={posts} categories={categories} modifyVotes={modifyVotes} />
+      <Home {...this.props} />
     );
   }
 }
@@ -40,12 +43,15 @@ class HomeContainer extends Component {
 const mapDispatchToProps = dispatch => ({
   getAllPosts: () => dispatch(getAllPosts()),
   getCategoryPosts: categoryName => dispatch(getCategoryPosts(categoryName)),
-  modifyVotes: (post, vote) => dispatch(modifyPostVoteValues(post, vote))
+  modifyVotes: (post, vote) => dispatch(modifyPostVoteValues(post, vote)),
+  getSelectedSortMethod: value => dispatch(handleSortMethod(value))
 });
 
-const mapStateToProps = ({ categoryState, postsState }) => ({
+const mapStateToProps = ({ categoryState, postsState, sortMethodsState }) => ({
   categories: categoryState.categories,
-  posts: getPosts(postsState)
+  posts: getPosts(postsState),
+  sortMethods: getSortMethods(sortMethodsState),
+  selectedSortMethod: getSelectedSortMethod(sortMethodsState)
 });
 
 export default compose(

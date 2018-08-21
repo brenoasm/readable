@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
 import { colors } from '../../theme';
 
 import CategoryList from '../CategoryList';
 import PostsList from '../PostsList';
+import ToolsRow from '../ToolsRow';
 
 const StyledHome = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: ${colors.primary.primaryFour};
+  margin-top: 10px;
 
   .category-wrapper {
     display: flex;
@@ -27,15 +29,30 @@ const StyledHome = styled.div`
   }
 `;
 
-const Home = ({ posts, categories, modifyVotes }) => (
-  <StyledHome>
-    <div className="category-wrapper">
-      <CategoryList categories={categories} />
-    </div>
-    <div className="posts-wrapper">
-      <PostsList posts={posts} modifyVotes={modifyVotes} />
-    </div>
-  </StyledHome>
+const Home = ({
+  posts,
+  categories,
+  modifyVotes,
+  sortMethods,
+  selectedSortMethod,
+  getSelectedSortMethod }) => (
+  <Fragment>
+    <ToolsRow
+      options={sortMethods}
+      selectedOption={selectedSortMethod}
+      onFilterChange={getSelectedSortMethod} />
+    <StyledHome>
+      <div className="category-wrapper">
+        <CategoryList categories={categories} />
+      </div>
+      <div className="posts-wrapper">
+        <PostsList
+          posts={posts}
+          modifyVotes={modifyVotes}
+          sortMethod={selectedSortMethod} />
+      </div>
+    </StyledHome>
+  </Fragment>
 );
 
 export default Home;
