@@ -8,7 +8,7 @@ export const handleGetComments = postId => dispatch => {
   const url = `http://localhost:3001/posts/${postId}/comments`;
 
   axios.get(url, header)
-    .then(({data}) => console.log(data) || dispatch(handleComments(data)))
+    .then(({data}) => dispatch(handleComments(data)))
 };
 
 export const handleComments = comments => ({

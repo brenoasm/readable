@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import lodash from 'lodash';
+import * as _ from 'lodash';
 
 import Post from '../PostRow';
 
@@ -19,8 +19,8 @@ const StyledPostsList = styled.ul`
 const PostsList = ({ posts, modifyVotes, sortMethod }) => {
   const orderedPosts =
     sortMethod === SORT_BY_DATE
-      ? lodash.sortBy(posts, post => post.timestamp)
-      : lodash.sortBy(posts, post => post.voteScore);
+      ? _.sortBy(posts, post => post.timestamp)
+      : _.sortBy(posts, post => post.voteScore, ['desc']);
 
   return (
     <StyledPostsList>

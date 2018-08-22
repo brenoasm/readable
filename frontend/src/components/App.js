@@ -36,7 +36,7 @@ const App = () => (
       <Switch>
         <Route path="/posts/:id" component={PostDetailContainer} />
         <Route path="/:categoryName" component={HomeContainer} />
-        <Route path="/" exact={true} component={HomeContainer} />
+        <Route path="/" exact component={HomeContainer} />
       </Switch>
     </div>
   </StyledApp>

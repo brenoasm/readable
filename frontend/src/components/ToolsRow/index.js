@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+
+import Button from '../Button/';
 
 const StyledToolsRow = styled.div`
   display: flex;
@@ -14,13 +15,27 @@ const StyledToolsRow = styled.div`
       text-decoration: none;
     }
   }
+
+  & > span {
+    align-self: center;
+
+    select {
+      height: 34px;
+      cursor: pointer;
+    }
+  }
 `;
 
-const ToolsRow = ({ options, selectedOption, onFilterChange }) => (
+const ToolsRow = ({
+  options,
+  selectedOption,
+  onFilterChange,
+  toggleModal }) => (
   <StyledToolsRow>
-    <button type="button">
-      <Link to="/newPost">Novo post</Link>
-    </button>
+    <Button
+      text="Adicionar Postagem"
+      handleClick={() => toggleModal()}
+    />
     <span>
       <label htmlFor="select-sort-method">Filtrar por: </label>
       <select value={selectedOption}

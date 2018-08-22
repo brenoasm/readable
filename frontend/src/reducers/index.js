@@ -4,10 +4,12 @@ import CategoryReducer from './categoryReducer';
 import PostsReducer from './postsReducer';
 import CommentsReducer from './commentsReducer';
 import SortMethodReducer from './sortMethodReducer';
+import ModalReducer from './modalReducer';
 
 export default combineReducers({
   categoryState: CategoryReducer,
   postsState: PostsReducer,
   commentsState: CommentsReducer,
-  sortMethodsState: SortMethodReducer
+  sortMethodsState: SortMethodReducer,
+  modalState: ModalReducer
 });

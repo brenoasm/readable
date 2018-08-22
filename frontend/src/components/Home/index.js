@@ -6,6 +6,10 @@ import { colors } from '../../theme';
 import CategoryList from '../CategoryList';
 import PostsList from '../PostsList';
 import ToolsRow from '../ToolsRow';
+import Modal from '../Modal';
+import FormHOC from '../forms/FormHOC';
+import PostForm from '../forms/PostForm';
+import { Field } from 'react-final-form';
 
 const StyledHome = styled.div`
   display: flex;
@@ -35,12 +39,17 @@ const Home = ({
   modifyVotes,
   sortMethods,
   selectedSortMethod,
-  getSelectedSortMethod }) => (
+  getSelectedSortMethod,
+  toggleModal,
+  showModal
+}) => (
   <Fragment>
     <ToolsRow
+      toggleModal={toggleModal}
       options={sortMethods}
       selectedOption={selectedSortMethod}
-      onFilterChange={getSelectedSortMethod} />
+      onFilterChange={getSelectedSortMethod}
+    />
     <StyledHome>
       <div className="category-wrapper">
         <CategoryList categories={categories} />
@@ -49,9 +58,15 @@ const Home = ({
         <PostsList
           posts={posts}
           modifyVotes={modifyVotes}
-          sortMethod={selectedSortMethod} />
+          sortMethod={selectedSortMethod}
+        />
       </div>
     </StyledHome>
+    <Modal show={showModal} handleClose={toggleModal}>
+      <FormHOC>
+        {/* <PostForm /> */}
+      </FormHOC>
+    </Modal>
   </Fragment>
 );
 
