@@ -2,9 +2,22 @@ import React, { Component, Fragment } from 'react';
 
 import Input from '../Input';
 
+import { setupFormProperties } from '../../../utils/setup-form-properties';
+
 const validationTest = (value) => {
-  if (value.length < 2)
+  if (!!value && value.length < 2)
     return 'Length < que 2';
+};
+
+const newPost = {
+    id: {},
+    timestamp: {},
+    title: {
+      validations: [validationTest]
+    },
+    body: {},
+    author: {},
+    category: {},
 };
 
 class FormHOC extends Component {
@@ -12,21 +25,9 @@ class FormHOC extends Component {
     super(props);
 
     this.state = {
-      newPost: {
-        id: '',
-        timestamp: '',
-        title: {
-          value: '',
-          validations: [validationTest],
-          errors: [],
-          isDirty: false
-        },
-        body: '',
-        author: '',
-        category: '',
-      },
+      newPost: setupFormProperties(newPost),
       categories: ['react', 'redux', 'udacity']
-    };
+    }
 
     this.handleInput = this.handleInput.bind(this);
   }
