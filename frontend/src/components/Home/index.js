@@ -8,8 +8,19 @@ import PostsList from '../PostsList';
 import ToolsRow from '../ToolsRow';
 import Modal from '../Modal';
 import FormHOC from '../forms/FormHOC';
-import PostForm from '../forms/PostForm';
-import { Field } from 'react-final-form';
+import PropTypes from 'prop-types';
+
+import PostFormContainer from '../../containers/PostFormContainer';
+
+const propTypes = {
+  posts: PropTypes.array,
+  categories: PropTypes.array,
+  modifyVotes: PropTypes.func,
+  sortMethods: PropTypes.array,
+  selectedSortMethod: PropTypes.string,
+  toggleModal: PropTypes.func,
+  showModal: PropTypes.bool
+};
 
 const StyledHome = styled.div`
   display: flex;
@@ -62,12 +73,16 @@ const Home = ({
         />
       </div>
     </StyledHome>
-    <Modal show={showModal} handleClose={toggleModal}>
+    <PostFormContainer>
       <FormHOC>
-        {/* <PostForm /> */}
+        <Modal show={showModal} handleClose={toggleModal}>
+
+        </Modal>
       </FormHOC>
-    </Modal>
+    </PostFormContainer>
   </Fragment>
 );
+
+Home.propTypes = propTypes;
 
 export default Home;

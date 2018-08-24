@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { compose } from 'lodash/fp';
 
 import Button from '../Button';
 
 import { colors } from '../../theme';
 
 const StyledModal = styled.div`
-  display: ${props => props.show ? "block" : "none"};
+  display: ${props => (props.show ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -25,10 +26,9 @@ const StyledModal = styled.div`
     height: auto;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 
     div:first-child {
-
     }
 
     div:nth-child(2) {
@@ -37,7 +37,7 @@ const StyledModal = styled.div`
     }
 
     div:last-child {
-      border-top: 1px solid rgba(0, 0, 0, .15);
+      border-top: 1px solid rgba(0, 0, 0, 0.15);
       height: 70px;
       padding: 10px;
       display: flex;
@@ -48,34 +48,37 @@ const StyledModal = styled.div`
       }
     }
   }
-
 `;
 
-const Modal = ({
-  handleClose,
-  handleSubmit,
-  show,
-  children
-}) => (
-  // <StyledModal show={show} onClick={() => handleClose()}>
-  <StyledModal show={true}>
-    <div>
-      <div></div>
-      <div>
-        {children}
+const Modal = props => {
+  const composedSubmit = compose(
+    props.handleSubmit,
+    props.handleClose
+  );
+
+  return (
+    <StyledModal show={props.show} onClick={() => props.handleClose()}>
+      <div onClick={(e) => e.stopPropagation()}>
+        {/* A div abaixo seria o header, pode ser implementado depois */}
+        <div />
+        <div>
+          {props.children && React.cloneElement(props.children, {...props})}
+        </div>
+        <div>
+          <Button
+            handleClick={() => props.handleClose()}
+            type="button"
+            text="Cancelar"
+          />
+          <Button
+            handleClick={() => composedSubmit()}
+            type="button"
+            text="Concluir"
+          />
+        </div>
       </div>
-      <div>
-        <Button
-          handleClick={() => handleClose()}
-          type="button"
-          text="Cancelar" />
-        <Button
-          handleClick={() => handleSubmit()}
-          type="button"
-          text="Concluir" />
-      </div>
-    </div>
-  </StyledModal>
-);
+    </StyledModal>
+  );
+};
 
 export default Modal;

@@ -1,5 +1,13 @@
-export const setupFormProperties = (formProperties, isDirty = false) => {
-  let formattedObject = {};
+export const setupFormProperties = (formProperties) => {
+  if (
+    Object.keys(formProperties).length === 0 &&
+    formProperties.constructor === Object
+  )
+    return {};
+
+  let formattedObject = {
+    formIsValid: false
+  };
 
   Object.keys(formProperties).forEach(prop => {
     const param = formProperties[prop];
@@ -7,9 +15,10 @@ export const setupFormProperties = (formProperties, isDirty = false) => {
     try {
       let validations = [];
       let errors = [];
+      const value = '';
 
       let objectToReturn = {
-        value: !!param.value ? '' : param.value,
+        value: param.value || value,
         isDirty: param.isDirty || false
       };
 
@@ -17,17 +26,12 @@ export const setupFormProperties = (formProperties, isDirty = false) => {
         validations = [
           ...param.validations.map(
             validation =>
-            typeof validation !== 'function'
-            ? Error('Invalid param. It should be a function')
-            : validation
+              typeof validation !== 'function'
+                ? Error('Invalid param. It should be a function')
+                : validation
           )
           //criar funções padrões
         ];
-      }
-
-      debugger
-      if (validations.length > 0 && !param.isDirty) {
-        errors = validations.map(validation => validation(param.value));
       }
 
       formattedObject = {
