@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { setupFormProperties } from '../../../utils/setup-form-properties';
+import { getRandomId } from '../../../utils/unique-key-generator';
 
 const defaultProps = {
   formProperties: {}
@@ -19,8 +20,16 @@ class FormHOC extends Component {
     super(props);
 
     this.state = {
-      formProperties: setupFormProperties(props.formProperties)
+      formProperties: {}
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      formProperties: setupFormProperties(this.props.formProperties)
+    });
   }
 
   handleInput = e => {
@@ -35,7 +44,7 @@ class FormHOC extends Component {
     this.setState(prevState => ({
       formProperties: {
         ...prevState.formProperties,
-        formIsValid: errors.length > 0, // Pode-se usar o isDirty também para validar o form
+        formIsValid: errors.length === 0, // Pode-se usar o isDirty também para validar o form
         [name]: {
           ...prevProperty,
           value: value,
@@ -46,11 +55,28 @@ class FormHOC extends Component {
     }));
   };
 
-  handleSubmit = () => {
-    //passar do container e mapear as props do form para chave/valor
+  handleSubmit() {
+    const { formProperties } = this.state;
+    const min = 0;
+    const max = 1000;
 
-    this.props.onSubmit('Valor a enviar para o container');
-  };
+    debugger
+    if (!formProperties.formIsValid) return false;
+
+    const propertiesToSubmit = Object.keys(formProperties).map(param => {
+      const timestamp = Date.now();
+      const property = this.state.formProperties[param];
+
+      return {
+        ...propertiesToSubmit,
+        [param]: property.value,
+        timestamp,
+        id: getRandomId(min, max, String(timestamp).substring(0, 4)),
+      }
+    });
+
+    this.props.onSubmit(propertiesToSubmit);
+  }
 
   handleClearForm = () => {
     const clearedFormProps = Object.keys(this.state.formProperties).map(
@@ -70,14 +96,17 @@ class FormHOC extends Component {
 
   render() {
     const { handleSubmit, handleClearForm, handleInput, props } = this;
+    const { formProperties } = this.state;
 
     return (
       <Fragment>
-        {React.cloneElement(props.children, {
-          handleSubmit,
-          handleClearForm,
-          handleInput
-        })}
+        {Object.keys(formProperties).length > 0 &&
+          React.cloneElement(props.children, {
+            handleSubmit,
+            handleClearForm,
+            handleInput,
+            formProperties
+          })}
       </Fragment>
     );
   }

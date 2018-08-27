@@ -4,6 +4,13 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { colors } from '../../theme';
 
+const defaultProps = {
+  category: {
+    name: 'Home',
+    path: '/'
+  }
+}
+
 const StyledCategoryRow = styled.div`
   width: 100%;
   min-height: 100px;
@@ -12,6 +19,7 @@ const StyledCategoryRow = styled.div`
   padding: 20px;
   text-align: center;
   vertical-align: middle;
+  box-sizing: border-box;
 
   &:hover, &.active {
     border-left: 5px solid ${colors.primary.primaryThree};
@@ -35,5 +43,7 @@ const CategoryRow = ({ category, location }) => {
     </StyledCategoryRow>
   );
 };
+
+CategoryRow.defaultProps = defaultProps;
 
 export default withRouter(CategoryRow);

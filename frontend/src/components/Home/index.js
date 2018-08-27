@@ -11,6 +11,7 @@ import FormHOC from '../forms/FormHOC';
 import PropTypes from 'prop-types';
 
 import PostFormContainer from '../../containers/PostFormContainer';
+import PostForm from '../forms/PostForm';
 
 const propTypes = {
   posts: PropTypes.array,
@@ -76,7 +77,7 @@ const Home = ({
     <PostFormContainer>
       <FormHOC>
         <Modal show={showModal} handleClose={toggleModal}>
-
+          <PostForm />
         </Modal>
       </FormHOC>
     </PostFormContainer>

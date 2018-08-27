@@ -1,25 +1,77 @@
 import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Input = props => {
+import FormErrorMessage from '../FormErrorMessage';
+
+const defaultProps = {
+  name: '',
+  title: '',
+  className: '',
+  type: 'text',
+  value: '',
+  id: '',
+  handleChange: () => {},
+  placeholder: '',
+  errors: []
+};
+
+const propTypes = {
+  name: PropTypes.string,
+  title: PropTypes.string,
+  className: PropTypes.string,
+  type: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  id: PropTypes.string,
+  handleChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  errors: PropTypes.arrayOf(PropTypes.string)
+};
+
+const StyledInput = styled.div`
+  margin: 5px;
+
+  & > label {
+    margin-right: 5px;
+  }
+
+  & > input {
+    border: 2px solid rgb(238, 238, 238);
+  }
+`;
+
+const Input = ({
+  name,
+  title,
+  className,
+  type,
+  value,
+  id,
+  handleChange,
+  placeholder,
+  errors
+}) => {
   return (
-    <div>
-      <label htmlFor={props.name}>{props.title}</label>
+    <StyledInput>
+      <label htmlFor={name}>{title}</label>
       <input
-        className={props.className}
-        type={props.type}
-        value={props.value}
-        id={props.id}
-        name={props.name}
-        onChange={props.handleChange}
-        placeholder={props.placeholder}
+        className={className}
+        type={type}
+        value={value}
+        id={id}
+        name={name}
+        onChange={handleChange}
+        placeholder={placeholder}
       />
-      <div>
-        {props.errors && props.errors.map(error => (
-          <span style={{ color: '#fe0303' }}>{error}</span>
-        ))}
-      </div>
-    </div>
-  );
-}
+      <FormErrorMessage errors={errors} />
+    </StyledInput>
+  )
+};
+
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
 
 export default Input;

@@ -3,7 +3,7 @@ export const setupFormProperties = (formProperties) => {
     Object.keys(formProperties).length === 0 &&
     formProperties.constructor === Object
   )
-    return {};
+  return {};
 
   let formattedObject = {
     formIsValid: false
@@ -18,6 +18,7 @@ export const setupFormProperties = (formProperties) => {
       const value = '';
 
       let objectToReturn = {
+        ...param,
         value: param.value || value,
         isDirty: param.isDirty || false
       };
@@ -26,9 +27,9 @@ export const setupFormProperties = (formProperties) => {
         validations = [
           ...param.validations.map(
             validation =>
-              typeof validation !== 'function'
-                ? Error('Invalid param. It should be a function')
-                : validation
+            typeof validation !== 'function'
+            ? Error('Invalid param. It should be a function')
+            : validation
           )
           //criar funções padrões
         ];
@@ -39,7 +40,8 @@ export const setupFormProperties = (formProperties) => {
         [prop]: {
           ...objectToReturn,
           errors,
-          validations
+          validations,
+          name: prop
         }
       };
     } catch (e) {

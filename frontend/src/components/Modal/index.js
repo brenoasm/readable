@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { compose } from 'lodash/fp';
 
@@ -21,32 +21,33 @@ const StyledModal = styled.div`
     box-shadow: 0 3px 10px ${colors.black};
     position: fixed;
     background: ${colors.white};
-    width: 60%;
+    width: 50%;
     padding: 10px;
     height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    div:first-child {
-    }
-
-    div:nth-child(2) {
-      min-height: 100px;
-      margin: 5px;
-    }
-
-    div:last-child {
-      border-top: 1px solid rgba(0, 0, 0, 0.15);
-      height: 70px;
-      padding: 10px;
-      display: flex;
-      justify-content: flex-end;
-
-      button {
-        margin: 5px 10px 0px 15px;
+      > div:first-child {
       }
-    }
+
+      > div:nth-child(2) {
+        min-height: 100px;
+        margin: 5px;
+        padding: 10px;
+      }
+
+      > div:last-child {
+        border-top: 1px solid rgba(0, 0, 0, 0.15);
+        height: 70px;
+        padding: 10px;
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+          margin: 5px 10px 0px 15px;
+        }
+      }
   }
 `;
 
@@ -57,13 +58,13 @@ const Modal = props => {
   );
 
   return (
-    <StyledModal show={props.show} onClick={() => props.handleClose()}>
+    <StyledModal show={true || props.show} onClick={() => props.handleClose()}>
       <div onClick={(e) => e.stopPropagation()}>
         {/* A div abaixo seria o header, pode ser implementado depois */}
         <div />
-        <div>
+        <Fragment>
           {props.children && React.cloneElement(props.children, {...props})}
-        </div>
+        </Fragment>
         <div>
           <Button
             handleClick={() => props.handleClose()}

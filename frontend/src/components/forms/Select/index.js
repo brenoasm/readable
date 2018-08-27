@@ -1,19 +1,79 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const Select = props => (
-  <div>
-    <label htmlFor={props.name}>{props.title}</label>
+import FormErrorMessage from '../FormErrorMessage';
+
+const propTypes = {
+  title: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  className: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  handleChange: PropTypes.func,
+  errors: PropTypes.arrayOf(PropTypes.string)
+};
+
+const defaultProps = {
+  title: '',
+  name: '',
+  id: '',
+  className: '',
+  value: '',
+  handleChange: () => {},
+  options: [],
+  errors: []
+}
+
+const StyledSelect = styled.div`
+  margin: 5px;
+
+  & > label {
+    margin-right: 5px;
+  }
+
+  & > select {
+    min-height: 15px;
+    min-width: 120px;
+    padding: 1px 0;
+    cursor: pointer;
+  }
+`;
+
+const Select = ({
+  title,
+  name,
+  id,
+  className,
+  value,
+  handleChange,
+  options,
+  errors
+}) => (
+  <StyledSelect>
+    <label htmlFor={name}>{title}</label>
     <select
-      id={props.id}
-      className={props.className}
-      name={props.name}
-      value={props.value}
-      onChange={props.handleChange}>
-      {Array.isArray(props.options) && props.options.map(option => (
-        <option value={option.value}>{option.label}</option>
-      ))}
+      id={id}
+      className={className}
+      name={name}
+      value={value}
+      onChange={(event) => handleChange(event)}
+    >
+      {Array.isArray(options) &&
+        options.map(option => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
     </select>
-  </div>
+    <FormErrorMessage errors={errors} />
+  </StyledSelect>
 );
+
+Select.propTypes = propTypes;
+Select.defaultProps = defaultProps;
 
 export default Select;

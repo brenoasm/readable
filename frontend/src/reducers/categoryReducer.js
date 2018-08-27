@@ -1,26 +1,18 @@
+import { GET_CATEGORIES } from '../actions';
+
 const initialState = {
-  categories: [
-    {
-      name: 'Home',
-      path: ''
-    },
-    {
-      name: 'React',
-      path: 'react'
-    },
-    {
-      name: 'Redux',
-      path: 'redux'
-    },
-    {
-      name: 'Udacity',
-      path: 'udacity'
-    }
-  ]
+  categories: []
 };
 
 const CategoryReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
+    case GET_CATEGORIES:
+      return {
+        ...state,
+        categories: [
+          ...action.payload.categories,
+        ]
+      };
     default:
       return state;
   }
