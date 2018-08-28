@@ -52,13 +52,19 @@ const StyledModal = styled.div`
 `;
 
 const Modal = props => {
+
+  const composedCancel = compose(
+    props.handleClose,
+    props.handleClearForm
+  );
+
   const composedSubmit = compose(
-    props.handleSubmit,
-    props.handleClose
+    composedCancel,
+    props.handleSubmit
   );
 
   return (
-    <StyledModal show={true || props.show} onClick={() => props.handleClose()}>
+    <StyledModal show={props.show} onClick={() => props.handleClose()}>
       <div onClick={(e) => e.stopPropagation()}>
         {/* A div abaixo seria o header, pode ser implementado depois */}
         <div />
@@ -67,14 +73,15 @@ const Modal = props => {
         </Fragment>
         <div>
           <Button
-            handleClick={() => props.handleClose()}
+            handleClick={composedCancel}
             type="button"
             text="Cancelar"
           />
           <Button
-            handleClick={() => composedSubmit()}
+            handleClick={composedSubmit}
             type="button"
             text="Concluir"
+            disabled={props.disabledSubmit}
           />
         </div>
       </div>

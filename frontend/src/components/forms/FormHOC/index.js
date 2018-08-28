@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { setupFormProperties } from '../../../utils/setup-form-properties';
 import { getRandomId } from '../../../utils/unique-key-generator';
+import { isTheFormValid, runValidations } from '../../../utils/validations';
 
 const defaultProps = {
   formProperties: {}
@@ -24,6 +25,7 @@ class FormHOC extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   componentDidMount() {
@@ -32,80 +34,136 @@ class FormHOC extends Component {
     });
   }
 
-  handleInput = e => {
+  componentDidUpdate(prevProps, prevState) {
+
+
+    if (Object.keys(prevState.formProperties).length > 0) {
+      const { category } = prevState.formProperties.properties;
+
+      // Para deixar esse cara genérico vai ser necessário uma refatoração
+      // nos componentes pai, talvez criar um HOC só para fazer isso
+      if (
+        prevProps &&
+        category.options !== this.props.formProperties.category.options
+      ) {
+        this.setState({
+          formProperties: {
+            ...prevProps.formProperties,
+            properties: {
+              ...prevState.formProperties.properties,
+              category: {
+                ...prevState.formProperties.properties.category,
+                options: this.props.formProperties.category.options
+              }
+            }
+          }
+        });
+      }
+    }
+  }
+
+  handleInput(e) {
     //passar do container uma função e chamar ela com o resultado desta
+    const { properties } = this.state.formProperties;
+
     const value = e.target.value;
     const name = e.target.name;
-    const prevProperty = this.state.formProperties[name];
-    const errors = prevProperty.validations.map(validation =>
-      validation(value)
-    );
+    const prevProperty = properties[name];
 
-    this.setState(prevState => ({
+    const errors = runValidations(prevProperty.validations, value);
+    const isDirty = prevProperty.originalValue !== value;
+    const isValid = errors.length === 0 && isDirty;
+    const disabledSubmit = !isTheFormValid(properties, name, isValid);
+
+    this.setState(({ formProperties }) => ({
       formProperties: {
-        ...prevState.formProperties,
-        formIsValid: errors.length === 0, // Pode-se usar o isDirty também para validar o form
-        [name]: {
-          ...prevProperty,
-          value: value,
-          isDirty: prevProperty.value !== value,
-          errors
+        disabledSubmit,
+        properties: {
+          ...formProperties.properties,
+          [name]: {
+            ...prevProperty,
+            value: value,
+            isDirty,
+            errors,
+            isValid
+          }
         }
       }
     }));
-  };
+  }
 
   handleSubmit() {
-    const { formProperties } = this.state;
+    const { properties, disabledSubmit } = this.state.formProperties;
+
+    if (disabledSubmit) return false;
+
     const min = 0;
     const max = 1000;
+    const timestamp = properties.timestamp.value || Date.now();
+    const id =
+      properties.id.value ||
+      getRandomId(min, max, String(timestamp).substring(0, 4));
+    let propertiesToSubmit = {};
 
-    debugger
-    if (!formProperties.formIsValid) return false;
+    Object.keys(properties).forEach(param => {
+      const property = properties[param];
 
-    const propertiesToSubmit = Object.keys(formProperties).map(param => {
-      const timestamp = Date.now();
-      const property = this.state.formProperties[param];
-
-      return {
+      propertiesToSubmit = {
         ...propertiesToSubmit,
-        [param]: property.value,
-        timestamp,
-        id: getRandomId(min, max, String(timestamp).substring(0, 4)),
-      }
+        [param]: property.value
+      };
     });
+
+    propertiesToSubmit = {
+      ...propertiesToSubmit,
+      id,
+      timestamp
+    };
 
     this.props.onSubmit(propertiesToSubmit);
   }
 
   handleClearForm = () => {
-    const clearedFormProps = Object.keys(this.state.formProperties).map(
-      propName => {
-        const prop = this.state.formProperties[propName];
+    const { properties } = this.state.formProperties;
+    let clearedProperties = {};
 
-        return {
-          ...prop,
-          value: '',
-          errors: []
-        };
+    Object.keys(properties).forEach(param => {
+      const property = properties[param];
+
+      clearedProperties = {
+        ...clearedProperties,
+        [param]: {
+          ...property,
+          value: property.originalValue,
+          errors: [],
+          isValid: false,
+          isDirty: false
+        }
+      };
+    });
+
+    this.setState({
+      formProperties: {
+        disabledSubmit: true,
+        properties: clearedProperties
       }
-    );
-
-    this.setState({ formProperties: clearedFormProps, formIsValid: false });
+    });
   };
 
   render() {
     const { handleSubmit, handleClearForm, handleInput, props } = this;
-    const { formProperties } = this.state;
+    const { properties, disabledSubmit } = this.state.formProperties;
 
     return (
       <Fragment>
-        {Object.keys(formProperties).length > 0 &&
+        {properties &&
+          Object.keys(properties).length > 0 &&
           React.cloneElement(props.children, {
             handleSubmit,
             handleClearForm,
             handleInput,
-            formProperties
+            properties,
+            disabledSubmit
           })}
       </Fragment>
     );

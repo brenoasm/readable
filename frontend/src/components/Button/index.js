@@ -8,7 +8,8 @@ const defaultProps = {
   textColor: colors.white,
   color: colors.primary.primaryOne,
   handleClick: () => {},
-  type: 'button'
+  type: 'button',
+  disabled: false,
 }
 
 const StyledButton = styled.button`
@@ -19,6 +20,11 @@ const StyledButton = styled.button`
   font-size: 18px;
   cursor: pointer;
   padding: 5px;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;
 
 const onClick = (event, fn) => {
@@ -27,12 +33,13 @@ const onClick = (event, fn) => {
   fn();
 };
 
-const Button = ({ type, textColor, color, handleClick, text }) => (
+const Button = ({ type, textColor, color, handleClick, text, disabled }) => (
   <StyledButton
     type={type}
     onClick={(event) => onClick(event, handleClick)}
     textColor={textColor}
-    color={color}>
+    color={color}
+    disabled={disabled}>
     {text}
   </StyledButton>
 );

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import * as _ from 'lodash';
 
-import Post from '../PostRow';
+import PostRow from '../PostRow';
 
 import { SORT_BY_DATE } from '../../utils/sort-methods';
 
@@ -16,17 +16,17 @@ const StyledPostsList = styled.ul`
   }
 `;
 
-const PostsList = ({ posts, modifyVotes, sortMethod }) => {
+const PostsList = ({ posts, modifyVotes, sortMethod, editPost }) => {
   const orderedPosts =
     sortMethod === SORT_BY_DATE
       ? _.sortBy(posts, post => post.timestamp)
-      : _.sortBy(posts, post => post.voteScore, ['desc']);
+      : _.sortBy(posts, post => post.voteScore).reverse();
 
   return (
     <StyledPostsList>
       {Array.isArray(orderedPosts) &&
         orderedPosts.map(post => (
-          <Post modifyVotes={modifyVotes} key={post.id} post={post} />
+          <PostRow modifyVotes={modifyVotes} key={post.id} post={post} editPost={editPost} />
         ))}
     </StyledPostsList>
   );

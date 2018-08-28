@@ -18,8 +18,8 @@ const StyledFormErrorMessage = styled.div`
 
 const FormErrorMessage = ({ errors }) => (
   <StyledFormErrorMessage>
-    {errors && errors.map(error => (
-      <span>{error}</span>
+    {errors && errors.map((error, index) => (
+      <span key={index}>{error}</span>
     ))}
   </StyledFormErrorMessage>
 );

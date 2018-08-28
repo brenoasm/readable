@@ -62,6 +62,7 @@ const Select = ({
       value={value}
       onChange={(event) => handleChange(event)}
     >
+      <option key="default" value="">Selecione</option>
       {Array.isArray(options) &&
         options.map(option => (
           <option key={option.value} value={option.value}>

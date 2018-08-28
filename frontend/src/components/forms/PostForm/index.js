@@ -7,12 +7,12 @@ import Select from '../Select';
 import TextArea from '../TextArea';
 
 const propTypes = {
-  formProperties: PropTypes.object,
+  properties: PropTypes.object,
   handleInput: PropTypes.func
 };
 
 const defaultProps = {
-  formProperties: {},
+  properties: {},
   handleInput: () => {}
 };
 
@@ -22,36 +22,36 @@ const StyledPostForm = styled.div`
   justify-content: space-between;
 `;
 
-const PostForm = ({ formProperties, handleInput }) => {
+const PostForm = ({ properties, handleInput }) => {
   return (
     <StyledPostForm>
       <Input
         title="Autor: "
-        name={formProperties.author.name}
-        value={formProperties.author.value}
-        errors={formProperties.author.errors}
+        name={properties.author.name}
+        value={properties.author.value}
+        errors={properties.author.errors}
         handleChange={handleInput}
       />
       <Input
         title="Titulo: "
-        name={formProperties.title.name}
-        value={formProperties.title.value}
-        errors={formProperties.title.errors}
+        name={properties.title.name}
+        value={properties.title.value}
+        errors={properties.title.errors}
         handleChange={handleInput}
       />
       <Select
         title="Categoria: "
-        name={formProperties.category.name}
-        value={formProperties.category.value}
-        errors={formProperties.category.errors}
+        name={properties.category.name}
+        value={properties.category.value}
+        errors={properties.category.errors}
         handleChange={handleInput}
-        options={formProperties.category.options}
+        options={properties.category.options}
       />
       <TextArea
         title="Descrição: "
-        name={formProperties.body.name}
-        value={formProperties.body.value}
-        errors={formProperties.body.errors}
+        name={properties.body.name}
+        value={properties.body.value}
+        errors={properties.body.errors}
         handleChange={handleInput}
       />
     </StyledPostForm>

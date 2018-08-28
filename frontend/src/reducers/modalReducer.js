@@ -5,16 +5,15 @@ const initialState = {
 };
 
 const ModalReduer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case TOGGLE_MODAL_VISIBILITY:
       return {
         ...state,
-        show: !state.show
-      }
+        show: action.payload
+      };
     default:
       return state;
   }
-
 };
 
 export default ModalReduer;

@@ -19,8 +19,20 @@ const propTypes = {
   modifyVotes: PropTypes.func,
   sortMethods: PropTypes.array,
   selectedSortMethod: PropTypes.string,
-  toggleModal: PropTypes.func,
-  showModal: PropTypes.bool
+  showModal: PropTypes.func,
+  hideModal: PropTypes.func,
+  modalIsVisible: PropTypes.bool
+};
+
+const defaultProps = {
+  posts: [],
+  categories: [],
+  modifyVotes: () => {},
+  sortMethods: [],
+  selectedSortMethod: '',
+  showModal: () => {},
+  hideModal: () => {},
+  modalIsVisible: false
 };
 
 const StyledHome = styled.div`
@@ -40,6 +52,8 @@ const StyledHome = styled.div`
 
   .posts-wrapper {
     min-width: calc(100% - 200px);
+    max-height: 575px;
+    overflow-y: auto;
     background-color: ${colors.primary.primaryFour};
     box-shadow: 0 2px 5px ${colors.primary.primaryTwo};
   }
@@ -52,12 +66,14 @@ const Home = ({
   sortMethods,
   selectedSortMethod,
   getSelectedSortMethod,
-  toggleModal,
-  showModal
+  showModal,
+  hideModal,
+  modalIsVisible,
+  editPost
 }) => (
   <Fragment>
     <ToolsRow
-      toggleModal={toggleModal}
+      showModal={showModal}
       options={sortMethods}
       selectedOption={selectedSortMethod}
       onFilterChange={getSelectedSortMethod}
@@ -71,12 +87,13 @@ const Home = ({
           posts={posts}
           modifyVotes={modifyVotes}
           sortMethod={selectedSortMethod}
+          editPost={editPost}
         />
       </div>
     </StyledHome>
     <PostFormContainer>
       <FormHOC>
-        <Modal show={showModal} handleClose={toggleModal}>
+        <Modal show={modalIsVisible} handleClose={hideModal}>
           <PostForm />
         </Modal>
       </FormHOC>
@@ -85,5 +102,6 @@ const Home = ({
 );
 
 Home.propTypes = propTypes;
+Home.defaultProps = defaultProps;
 
 export default Home;
