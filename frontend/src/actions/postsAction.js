@@ -19,7 +19,7 @@ export const editPost = post => ({
 
 export const submitPost = post => dispatch => {
   const url = 'http://localhost:3001/posts';
-
+  //Dar um jeito de mudar o submit para edição e criação
   const body = {
     ...post
   };

@@ -34,31 +34,11 @@ class FormHOC extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-
-
-    if (Object.keys(prevState.formProperties).length > 0) {
-      const { category } = prevState.formProperties.properties;
-
-      // Para deixar esse cara genérico vai ser necessário uma refatoração
-      // nos componentes pai, talvez criar um HOC só para fazer isso
-      if (
-        prevProps &&
-        category.options !== this.props.formProperties.category.options
-      ) {
-        this.setState({
-          formProperties: {
-            ...prevProps.formProperties,
-            properties: {
-              ...prevState.formProperties.properties,
-              category: {
-                ...prevState.formProperties.properties.category,
-                options: this.props.formProperties.category.options
-              }
-            }
-          }
-        });
-      }
+  componentDidUpdate(prevProps) {
+    if (prevProps.formProperties !== this.props.formProperties) {
+      this.setState({
+        formProperties: setupFormProperties(this.props.formProperties)
+      });
     }
   }
 

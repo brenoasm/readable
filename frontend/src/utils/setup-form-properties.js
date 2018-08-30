@@ -1,5 +1,4 @@
 export const setupFormProperties = (formProperties = {}) => {
-  debugger
   if (
     Object.keys(formProperties).length === 0 &&
     formProperties.constructor === Object
