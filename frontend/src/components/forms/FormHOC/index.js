@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { setupFormProperties } from '../../../utils/setup-form-properties';
-import { getRandomId } from '../../../utils/unique-key-generator';
 import { isTheFormValid, runValidations } from '../../../utils/validations';
 
 const defaultProps = {
@@ -77,50 +76,32 @@ class FormHOC extends Component {
 
     if (disabledSubmit) return false;
 
-    const min = 0;
-    const max = 1000;
-    const timestamp = properties.timestamp.value || Date.now();
-    const id =
-      properties.id.value ||
-      getRandomId(min, max, String(timestamp).substring(0, 4));
-    let propertiesToSubmit = {};
-
-    Object.keys(properties).forEach(param => {
-      const property = properties[param];
-
-      propertiesToSubmit = {
-        ...propertiesToSubmit,
-        [param]: property.value
-      };
-    });
-
-    propertiesToSubmit = {
-      ...propertiesToSubmit,
-      id,
-      timestamp
-    };
+    const propertiesToSubmit = Object.keys(properties).reduce(
+      (newObj, param) => ({
+        ...newObj,
+        [param]: properties[param].value
+      }),
+      {}
+    );
 
     this.props.onSubmit(propertiesToSubmit);
   }
 
   handleClearForm = () => {
     const { properties } = this.state.formProperties;
-    let clearedProperties = {};
-
-    Object.keys(properties).forEach(param => {
-      const property = properties[param];
-
-      clearedProperties = {
-        ...clearedProperties,
+    const clearedProperties = Object.keys(properties).reduce(
+      (newObj, param) => ({
+        ...newObj,
         [param]: {
-          ...property,
-          value: property.originalValue,
+          ...properties[param],
+          value: properties[param].originalValue,
           errors: [],
           isValid: false,
           isDirty: false
         }
-      };
-    });
+      }),
+      {}
+    );
 
     this.setState({
       formProperties: {

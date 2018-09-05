@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import HomeContainer from '../containers/HomeContainer';
 import PostDetailContainer from '../containers/PostDetailContainer';
 
-
 const StyledApp = styled.div`
   display: grid;
   min-height: 80%;
