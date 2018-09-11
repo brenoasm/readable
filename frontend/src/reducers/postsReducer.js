@@ -6,7 +6,10 @@ import {
   EDIT_POST
 } from '../actions/index';
 
-import { validValue, validOption } from '../utils/validations';
+import {
+  validValue,
+  validOption
+} from '../utils/validations';
 
 const initialState = {
   posts: [],
@@ -20,20 +23,27 @@ const initialState = {
     },
     title: {
       validations: [validValue],
-      isFormField: true
+      isFormField: true,
+      isValid: null,
     },
     body: {
       validations: [validValue],
-      isFormField: true
+      isFormField: true,
+      isValid: null,
     },
     author: {
       validations: [validValue],
-      isFormField: true
+      isFormField: true,
+      isValid: null,
     },
     category: {
       validations: [validOption],
       isFormField: true,
-      options: [{ label: '', value: '' }]
+      isValid: null,
+      options: [{
+        label: '',
+        value: ''
+      }]
     }
   }
 };
@@ -66,21 +76,18 @@ const PostsReducer = (state = initialState, action) => {
         ]
       }
     case EDIT_POST:
-      const { formProperties } = state;
-      let parsedFormProperties = {};
+      const {
+        formProperties
+      } = state;
 
-      Object.keys(formProperties).forEach(param => {
-        const property = formProperties[param];
-        const propertyNewValue = action.payload[param];
-
-        parsedFormProperties = {
-          ...parsedFormProperties,
-          [param]: {
-            ...property,
-            value: propertyNewValue
-          }
+      const parsedFormProperties = Object.keys(formProperties).reduce((newObj, param) => ({
+        ...newObj,
+        [param]: {
+          ...formProperties[param],
+          value: action.payload[param],
+          isValid: true,
         }
-      });
+      }), {});
 
       return {
         ...state,

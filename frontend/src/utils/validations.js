@@ -7,7 +7,7 @@ export const validOption = value => {
 };
 
 export const isTheFormValid = (properties, actualPropertyName, isValid) => {
-  return Object.keys(properties)
+   return Object.keys(properties)
     .map(
       prop =>
         properties[prop].isFormField

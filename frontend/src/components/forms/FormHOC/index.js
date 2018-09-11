@@ -42,7 +42,6 @@ class FormHOC extends Component {
   }
 
   handleInput(e) {
-    //passar do container uma função e chamar ela com o resultado desta
     const { properties } = this.state.formProperties;
 
     const value = e.target.value;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getRandomId } from '../utils/setup-form-properties';
+import { getRandomId } from '../utils/unique-key-generator';
 
 import { handleGetComments } from './commentsAction';
 
@@ -20,29 +20,28 @@ export const editPost = post => ({
 });
 
 export const submitPost = post => dispatch => {
-  const url = 'http://localhost:3001/posts';
-
   const min = 0;
   const max = 1000;
-  const timestamp = post.timestamp.value || Date.now();
+  const timestamp = post.timestamp || Date.now();
   const id =
-    post.id.value || getRandomId(min, max, String(timestamp).substring(0, 4));
+    post.id || getRandomId(min, max, String(timestamp).substring(0, 4));
 
-  // Corrigir a criação/edição de um id e timestamp
   const body = {
-    ...post
+    ...post,
+    id,
+    timestamp
   };
 
   if (post.id) {
     axios
-      .put(url, post, header)
+      .put(`http://localhost:3001/posts/${id}`, body, header)
       .then(({ data }) => dispatch(updatePost(data)))
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   } else {
     axios
-      .post(url, body, header)
+      .post(`http://localhost:3001/posts`, body, header)
       .then(({ data }) => dispatch(createPost(data)))
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   }
 };
 

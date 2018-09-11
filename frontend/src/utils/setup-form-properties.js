@@ -5,56 +5,39 @@ export const setupFormProperties = (formProperties = {}) => {
   )
     return {};
 
-  let properties = {};
-  let formattedObject = {
-    disabledSubmit: true
-  };
-
-  Object.keys(formProperties).forEach(prop => {
+  const properties = Object.keys(formProperties).reduce((newObj, prop) => {
     const param = formProperties[prop];
 
-    try {
-      let validations = [];
-      let errors = [];
-      const value = '';
+    const value = '';
+    const objectToReturn = {
+      ...param,
+      value: param.value || value,
+      originalValue: value,
+      isDirty: param.isDirty || false,
+      isFormField: param.isFormField,
+      isValid: param.isValid || false
+    };
 
-      let objectToReturn = {
-        ...param,
-        value: param.value || value,
-        originalValue: value,
-        isDirty: param.isDirty || false,
-        isFormField: param.isFormField
-      };
-
-      if (param.validations) {
-        validations = [
+    return {
+      ...newObj,
+      [prop]: {
+        ...objectToReturn,
+        errors: [],
+        validations: param.validations && [
           ...param.validations.map(
             validation =>
-              typeof validation !== 'function'
-                ? Error('Invalid param. It should be a function')
-                : validation
+            typeof validation !== 'function' ?
+            Error('Invalid param. It should be a function') :
+            validation
           )
-          //criar funções padrões
-        ];
+        ],
+        name: prop
       }
-
-      properties = {
-        ...properties,
-        [prop]: {
-          ...objectToReturn,
-          errors,
-          validations,
-          name: prop,
-          isValid: false
-        }
-      };
-    } catch (e) {
-      throw e;
-    }
-  });
+    };
+  }, {});
 
   return {
-    ...formattedObject,
+    disabledSubmit: true,
     properties
   };
 };
