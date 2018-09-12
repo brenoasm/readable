@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { compose } from 'lodash/fp';
 
-import Button from '../Button';
+import Button from '../buttons/Button';
 
 import { colors } from '../../theme';
 

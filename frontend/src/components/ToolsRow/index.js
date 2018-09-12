@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import Button from '../Button/';
+import NewPostButton from '../buttons/NewPostButton';
 
 const propTypes = {
   options: PropTypes.arrayOf(PropTypes.object),
@@ -43,7 +43,7 @@ const StyledToolsRow = styled.div`
 
 const ToolsRow = ({ options, selectedOption, onFilterChange, showModal }) => (
   <StyledToolsRow>
-    <Button text="Adicionar Postagem" handleClick={() => showModal()} />
+    <NewPostButton handleClick={showModal} />
     <span>
       <label htmlFor="select-sort-method">Filtrar por: </label>
       <select

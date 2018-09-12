@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
 import { colors } from '../../theme';
@@ -7,7 +7,7 @@ import PostRowDetail from './PostRowDetail';
 import PostRowTitle from './PostRowTitle';
 import PostRowRating from './PostRowRating';
 
-const StyledPostRow = styled.li`
+const StyledPostRow = styled.div`
   display: flex;
   box-shadow: 0 4px 5px ${colors.primary.primaryTwo};
   background-color: ${colors.primary.primaryFive};
@@ -40,12 +40,17 @@ const StyledPostRow = styled.li`
   }
 `;
 
-const PostRow = ({ post, modifyVotes, editPost }) => (
-  <StyledPostRow>
-    <PostRowDetail post={post} />
-    <PostRowTitle post={post} editPost={editPost} />
-    <PostRowRating post={post} modifyVotes={modifyVotes}/>
-  </StyledPostRow>
+const PostRow = ({ post, modifyVotes, editPost, children }) => (
+  <Fragment>
+    <StyledPostRow>
+      <PostRowDetail post={post} />
+      <PostRowTitle post={post} editPost={editPost} />
+      <PostRowRating post={post} modifyVotes={modifyVotes}/>
+    </StyledPostRow>
+    <Fragment>
+      {children}
+    </Fragment>
+  </Fragment>
 );
 
 export default PostRow;

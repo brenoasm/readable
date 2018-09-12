@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-import { handleGetPost } from '../../actions/postsAction';
 import { getPost } from '../../selectors/postsSelector';
+import {
+  handleGetPost,
+  modifyPostVoteValues,
+  editPost } from '../../actions/postsAction';
+
+import { getModalState } from '../../selectors/modalSelector';
+import { showModal, hideModal } from '../../actions/modalAction';
+
 import { getComments } from '../../selectors/commentsSelector';
+
+import PostDetail from '../../components/PostDetail';
 
 class PostDetailContainer extends Component {
   componentDidMount() {
@@ -13,28 +23,28 @@ class PostDetailContainer extends Component {
   }
 
   render() {
-    const { post, comments } = this.props;
 
     return (
-      <div>
-        <h2>{post && post.id}</h2>
-        <ul>
-          {Array.isArray(comments) && comments.map(comment => (
-            <li>{comment.id}</li>
-          ))}
-        </ul>
-      </div>
+      <PostDetail {...this.props} />
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: id => dispatch(handleGetPost(id))
+  onLoad: id => dispatch(handleGetPost(id)),
+  modifyVotes: (post, vote) => dispatch(modifyPostVoteValues(post, vote)),
+  showModal: () => dispatch(showModal()),
+  hideModal: () => dispatch(hideModal()),
+  editPost: (post) => compose(
+    dispatch(showModal()),
+    dispatch(editPost(post)),
+  )
 });
 
-const mapStateToProps = ({ postsState, commentsState }) => ({
+const mapStateToProps = ({ postsState, commentsState, modalState }) => ({
   post: getPost(postsState),
-  comments: getComments(commentsState)
+  comments: getComments(commentsState),
+  modalIsVisible: getModalState(modalState)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetailContainer);

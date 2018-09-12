@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors } from '../../theme';
+import { colors } from '../../../theme';
 
 const defaultProps = {
   text: 'Button',
