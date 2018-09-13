@@ -61,11 +61,17 @@ const PostsReducer = (state = initialState, action) => {
         posts: action.payload
       };
     case UPDATE_POST:
+      const { post, posts } = state;
+
+      const updatedPost = {
+        ...post,
+        voteScore: post.id === action.payload.id ? action.payload.voteScore : post.voteScore
+      };
+
       return {
         ...state,
-        posts: state.posts.map(
-          post => (post.id === action.payload.id ? action.payload : post)
-        )
+        posts: posts.map(post => (post.id === action.payload.id ? action.payload : post)),
+        post: updatedPost
       };
     case CREATE_POST:
       return {

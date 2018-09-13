@@ -22,6 +22,10 @@ class PostDetailContainer extends Component {
     onLoad(match.params.id);
   }
 
+  componentWillReceiveProps(prevProps) {
+
+  }
+
   render() {
 
     return (
