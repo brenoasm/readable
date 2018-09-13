@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import HomeContainer from '../containers/HomeContainer';
 import PostDetailContainer from '../containers/PostDetailContainer';
+import Modal from './Modal';
 
 const StyledApp = styled.div`
   display: grid;
@@ -24,7 +25,9 @@ const StyledApp = styled.div`
   }
 `;
 
-const App = () => (
+const App = ({
+  modalIsVisible
+}) => (
   <StyledApp>
     <div className="header">
       <ul>
@@ -37,6 +40,15 @@ const App = () => (
         <Route path="/:categoryName" component={HomeContainer} />
         <Route path="/" exact component={HomeContainer} />
       </Switch>
+      <Modal show={modalIsVisible}>
+        {(header) => (
+          <Modal.Header>
+            <div>
+              <p>Aeeee</p>
+            </div>
+          </Modal.Header>
+        )}
+      </Modal>
     </div>
   </StyledApp>
 );

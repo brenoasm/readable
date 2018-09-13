@@ -91,13 +91,13 @@ const Home = ({
         />
       </div>
     </StyledHome>
-    <PostFormContainer>
+    {/* <PostFormContainer>
       <FormHOC>
         <Modal show={modalIsVisible} handleClose={hideModal}>
           <PostForm />
         </Modal>
       </FormHOC>
-    </PostFormContainer>
+    </PostFormContainer> */}
   </Fragment>
 );
 
