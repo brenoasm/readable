@@ -15,7 +15,7 @@ const propTypes = {
   // onPropertyChange: PropTypes.func.isRequired
 };
 
-class FormHOC extends Component {
+class WithForm extends Component {
   constructor(props) {
     super(props);
 
@@ -118,19 +118,22 @@ class FormHOC extends Component {
       <Fragment>
         {properties &&
           Object.keys(properties).length > 0 &&
-          React.cloneElement(props.children, {
-            handleSubmit,
-            handleClearForm,
-            handleInput,
-            properties,
-            disabledSubmit
-          })}
+            React.Children.map(props.children, child =>
+              React.cloneElement(child, {
+                handleSubmit,
+                handleClearForm,
+                handleInput,
+                properties,
+                disabledSubmit
+              })
+            )
+        }
       </Fragment>
     );
   }
 }
 
-FormHOC.propTypes = propTypes;
-FormHOC.defaultProps = defaultProps;
+WithForm.propTypes = propTypes;
+WithForm.defaultProps = defaultProps;
 
-export default FormHOC;
+export default WithForm;

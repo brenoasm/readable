@@ -26,8 +26,8 @@ const PostsList = ({ posts, modifyVotes, sortMethod, editPost }) => {
     <StyledPostsList>
       {Array.isArray(orderedPosts) &&
         orderedPosts.map(post => (
-          <li>
-            <PostRow modifyVotes={modifyVotes} key={post.id} post={post} editPost={editPost} />
+          <li key={post.id}>
+            <PostRow modifyVotes={modifyVotes} post={post} editPost={editPost} />
           </li>
         ))}
     </StyledPostsList>

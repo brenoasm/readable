@@ -6,7 +6,7 @@ import { colors } from '../../theme';
 
 import PostRow from '../../components/PostRow';
 import NewPostButton from '../../components/buttons/NewPostButton';
-import FormHOC from '../forms/FormHOC';
+import WithForm from '../forms/WithForm';
 import CommentFormContainer from '../../containers/CommentFormContainer';
 
 const propTypes = {
@@ -44,9 +44,9 @@ const PostDetail = ({
           <PostRow modifyVotes={modifyVotes} post={post} editPost={editPost}>
             <div>
               <CommentFormContainer>
-                <FormHOC>
+                <WithForm>
                   {/* Criar o form de comment */}
-                </FormHOC>
+                </WithForm>
               </CommentFormContainer>
               {Array.isArray(comments) && (
                 <ul>

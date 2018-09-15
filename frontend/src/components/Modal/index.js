@@ -1,10 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import { compose } from 'lodash/fp';
-
-import Button from '../buttons/Button';
 
 import { colors } from '../../theme';
+
+const ModalContents = ({ children, ...rest }) => {
+  return (
+    <div>
+      {(Array.isArray(children) || children)
+        && React.Children.map(children, child =>
+          React.cloneElement(child, {...rest}))
+      }
+    </div>
+  );
+};
 
 const StyledModal = styled.div`
   display: ${props => (props.show ? 'block' : 'none')};
@@ -27,45 +35,15 @@ const StyledModal = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-      // > div:first-child {
-      // }
-
-      // > div:nth-child(2) {
-      //   min-height: 100px;
-      //   margin: 5px;
-      //   padding: 10px;
-      // }
-
-      // > div:last-child {
-      //   border-top: 1px solid rgba(0, 0, 0, 0.15);
-      //   height: 70px;
-      //   padding: 10px;
-      //   display: flex;
-      //   justify-content: flex-end;
-
-      //   button {
-      //     margin: 5px 10px 0px 15px;
-      //   }
-      // }
   }
 `;
 
-const Header = (props) => {
-  // MOVER ESSES COMPONENTES PARA FORA DESSE ARQUIVO
-  return (
-    <Fragment>
-      {props.children}
-    </Fragment>
-  )
-};
-
 class Modal extends Component {
-  state = {
-    header: Header //AQUI BASICAMENTE É OS METODOS E VARIAVEIS DE CONTROLE DA MODAL, OU TALVEZ NEM ISSO
-  }
+  state = {};
 
-  static Header = Header; // ESSA LINHA FAZ EU TER ACESSO A UM "SUB-COMPONENTE FORA DO COMPONENTE"
+  static Header = ModalContents;
+  static Body = ModalContents;
+  static Footer = ModalContents;
 
   // state = { header, body, footer, show, modalProps };
   // const composedCancel = compose(
@@ -79,12 +57,15 @@ class Modal extends Component {
   // );
 
   render() {
-    const { header } = this.state;
+    // Passar o visible e os eventos
 
     return (
-      <StyledModal show={true} onClick={() => {}}>
+      <StyledModal
+        show={true}
+        onClick={() => {}}
+        className={this.props.className}>
         <div>
-          {this.props.children(header)}
+          {this.props.children()}
         </div>
       </StyledModal>
     );

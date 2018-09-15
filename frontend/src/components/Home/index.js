@@ -1,17 +1,12 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { colors } from '../../theme';
 
 import CategoryList from '../CategoryList';
 import PostsList from '../PostsList';
 import ToolsRow from '../ToolsRow';
-import Modal from '../Modal';
-import FormHOC from '../forms/FormHOC';
-import PropTypes from 'prop-types';
-
-import PostFormContainer from '../../containers/PostFormContainer';
-import PostForm from '../forms/PostForm';
 
 const propTypes = {
   posts: PropTypes.array,
@@ -67,8 +62,6 @@ const Home = ({
   selectedSortMethod,
   getSelectedSortMethod,
   showModal,
-  hideModal,
-  modalIsVisible,
   editPost
 }) => (
   <Fragment>
@@ -91,13 +84,6 @@ const Home = ({
         />
       </div>
     </StyledHome>
-    {/* <PostFormContainer>
-      <FormHOC>
-        <Modal show={modalIsVisible} handleClose={hideModal}>
-          <PostForm />
-        </Modal>
-      </FormHOC>
-    </PostFormContainer> */}
   </Fragment>
 );
 

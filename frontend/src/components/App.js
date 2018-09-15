@@ -2,9 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
+import ModalPostForm from './modal/ModalPostForm';
+
 import HomeContainer from '../containers/HomeContainer';
 import PostDetailContainer from '../containers/PostDetailContainer';
-import Modal from './Modal';
 
 const StyledApp = styled.div`
   display: grid;
@@ -40,18 +41,8 @@ const App = ({
         <Route path="/:categoryName" component={HomeContainer} />
         <Route path="/" exact component={HomeContainer} />
       </Switch>
-      <Modal show={modalIsVisible}>
-        {(header) => (
-          <Modal.Header>
-            <div>
-              <p>Aeeee</p>
-            </div>
-          </Modal.Header>
-        )}
-      </Modal>
+     <ModalPostForm modalIsVisible />
     </div>
   </StyledApp>
 );
-
-
 export default App;
