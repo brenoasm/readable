@@ -27,7 +27,8 @@ const StyledApp = styled.div`
 `;
 
 const App = ({
-  modalIsVisible
+  modalIsVisible,
+  hideModal
 }) => (
   <StyledApp>
     <div className="header">
@@ -41,8 +42,9 @@ const App = ({
         <Route path="/:categoryName" component={HomeContainer} />
         <Route path="/" exact component={HomeContainer} />
       </Switch>
-     <ModalPostForm modalIsVisible />
+     <ModalPostForm modalIsVisible={modalIsVisible} handleClose={hideModal} />
     </div>
   </StyledApp>
 );
+
 export default App;

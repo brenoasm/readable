@@ -3,16 +3,14 @@ import styled from 'styled-components';
 
 import { colors } from '../../theme';
 
-const ModalContents = ({ children, ...rest }) => {
-  return (
-    <div>
-      {(Array.isArray(children) || children)
-        && React.Children.map(children, child =>
-          React.cloneElement(child, {...rest}))
-      }
-    </div>
-  );
-};
+const ModalContents = ({ children, ...rest }) => (
+  <div>
+    {(Array.isArray(children) || children)
+      && React.Children.map(children, child =>
+        React.cloneElement(child, {...rest}))
+    }
+  </div>
+);
 
 const StyledModal = styled.div`
   display: ${props => (props.show ? 'block' : 'none')};
@@ -45,27 +43,20 @@ class Modal extends Component {
   static Body = ModalContents;
   static Footer = ModalContents;
 
-  // state = { header, body, footer, show, modalProps };
-  // const composedCancel = compose(
-  //   props.handleClose,
-  //   props.handleClearForm
-  // );
-
-  // const composedSubmit = compose(
-  //   composedCancel,
-  //   props.handleSubmit
-  // );
-
   render() {
-    // Passar o visible e os eventos
+    const {
+      show,
+      handleClick,
+      children,
+      className } = this.props;
 
     return (
       <StyledModal
-        show={true}
-        onClick={() => {}}
-        className={this.props.className}>
-        <div>
-          {this.props.children()}
+        show={show}
+        onClick={() => handleClick()}
+        className={className}>
+        <div onClick={(e) => e.stopPropagation()}>
+          {children(this.props)}
         </div>
       </StyledModal>
     );

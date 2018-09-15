@@ -20,8 +20,7 @@ import {
 } from '../../selectors/sortMethodsSelector';
 import { handleSortMethod } from '../../actions/sortMethodAction';
 
-import { getModalState } from '../../selectors/modalSelector';
-import { showModal, hideModal } from '../../actions/modalAction';
+import { showModal } from '../../actions/modalAction';
 
 import Home from '../../components/Home';
 
@@ -54,7 +53,6 @@ const mapDispatchToProps = dispatch => ({
   modifyVotes: (post, vote) => dispatch(modifyPostVoteValues(post, vote)),
   getSelectedSortMethod: value => dispatch(handleSortMethod(value)),
   showModal: () => dispatch(showModal()),
-  hideModal: () => dispatch(hideModal()),
   fetchCategories: () => dispatch(fetchCategories()),
   editPost: (post) => compose(
     dispatch(showModal()),
@@ -65,14 +63,12 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = ({
   categoryState,
   postsState,
-  sortMethodsState,
-  modalState
+  sortMethodsState
 }) => ({
   categories: getCategories(categoryState),
   posts: getPosts(postsState),
   sortMethods: getSortMethods(sortMethodsState),
-  selectedSortMethod: getSelectedSortMethod(sortMethodsState),
-  modalIsVisible: getModalState(modalState)
+  selectedSortMethod: getSelectedSortMethod(sortMethodsState)
 });
 
 export default compose(

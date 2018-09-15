@@ -25,9 +25,7 @@ const defaultProps = {
   modifyVotes: () => {},
   sortMethods: [],
   selectedSortMethod: '',
-  showModal: () => {},
-  hideModal: () => {},
-  modalIsVisible: false
+  showModal: () => {}
 };
 
 const StyledHome = styled.div`

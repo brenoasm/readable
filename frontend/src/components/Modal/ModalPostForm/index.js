@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { compose } from 'redux';
 
 import PostFormContainer from '../../../containers/PostFormContainer';
 import Modal from '../../modal';
@@ -12,17 +13,17 @@ const propTypes = {
   modalIsVisible: PropTypes.bool.isRequired,
   handleCancel: PropTypes.func,
   handleSubmit: PropTypes.func,
-  disableSubmit: PropTypes.bool
+  disabledSubmit: PropTypes.bool
 };
 
 const defaultProps = {
   modalIsVisible: false,
   handleCancel: () => {},
   handleSubmit: () => {},
-  disableSubmit: false
+  disabledSubmit: false
 };
 
-const Styled = styled(Modal)`
+const StyledModalPostForm = styled(Modal)`
   & > div {
 
       > div:first-child {
@@ -45,37 +46,50 @@ const Styled = styled(Modal)`
   }
 `;
 
-const ModalPostForm = ({
-  modalIsVisible,
-  handleCancel,
-  handleSubmit,
-  disableSubmit }) => (
-  <Styled show={modalIsVisible}>
-    {() => (
-      <Fragment>
-        <PostFormContainer>
-          <WithForm>
-            <Styled.Body>
-              <PostForm />
-            </Styled.Body>
-            <Styled.Footer>
-              <Button
-                handleClick={handleCancel}
-                type="button"
-                text="Cancelar"
-              />
-              <Button
-                handleClick={handleSubmit}
-                type="button"
-                text="Concluir"
-                disabled={disableSubmit}
-              />
-            </Styled.Footer>
-          </WithForm>
-        </PostFormContainer>
-      </Fragment>
-    )}
-  </Styled>
+const ModalPostForm = ({ modalIsVisible, handleClose }) => (
+  <PostFormContainer>
+    <WithForm>
+      <StyledModalPostForm show={modalIsVisible} handleClick={handleClose}>
+        {({properties,
+          handleInput,
+          handleClearForm,
+          handleSubmit,
+          disabledSubmit}) => {
+
+            const composedCancel = compose(
+              handleClose,
+              handleClearForm
+            );
+
+            const composedSubmit = compose(
+              composedCancel,
+              handleSubmit
+            );
+
+            return (
+              <Fragment>
+                <StyledModalPostForm.Body>
+                  <PostForm properties={properties} handleInput={handleInput} />
+                </StyledModalPostForm.Body>
+                <StyledModalPostForm.Footer>
+                  <Button
+                    handleClick={composedCancel}
+                    type="button"
+                    text="Cancelar"
+                  />
+                  <Button
+                    handleClick={composedSubmit}
+                    type="button"
+                    text="Concluir"
+                    disabled={disabledSubmit}
+                  />
+                </StyledModalPostForm.Footer>
+              </Fragment>
+            )
+        }}
+      </StyledModalPostForm>
+    </WithForm>
+  </PostFormContainer>
 );
 
 ModalPostForm.propTypes = propTypes;
