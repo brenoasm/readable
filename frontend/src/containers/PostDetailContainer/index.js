@@ -6,7 +6,8 @@ import { getPost } from '../../selectors/postsSelector';
 import {
   handleGetPost,
   modifyPostVoteValues,
-  editPost } from '../../actions/postsAction';
+  editPost,
+  getAllPosts } from '../../actions/postsAction';
 
 import { getModalState } from '../../selectors/modalSelector';
 import { showModal, hideModal } from '../../actions/modalAction';
@@ -17,8 +18,9 @@ import PostDetail from '../../components/PostDetail';
 
 class PostDetailContainer extends Component {
   componentDidMount() {
-    const { match, onLoad } = this.props;
+    const { match, onLoad, getAllPosts } = this.props;
 
+    getAllPosts();
     onLoad(match.params.id);
   }
 
@@ -36,6 +38,7 @@ class PostDetailContainer extends Component {
 
 const mapDispatchToProps = dispatch => ({
   onLoad: id => dispatch(handleGetPost(id)),
+  getAllPosts: () => dispatch(getAllPosts()),
   modifyVotes: (post, vote) => dispatch(modifyPostVoteValues(post, vote)),
   showModal: () => dispatch(showModal()),
   hideModal: () => dispatch(hideModal()),

@@ -14,11 +14,6 @@ import {
 
 import header from '../utils/header';
 
-export const editPost = post => ({
-  type: EDIT_POST,
-  payload: post
-});
-
 export const submitPost = post => dispatch => {
   const min = 0;
   const max = 1000;
@@ -96,6 +91,11 @@ export const handlePost = post => ({
 export const handlePosts = posts => ({
   type: HANDLE_POSTS,
   payload: posts
+});
+
+export const editPost = post => ({
+  type: EDIT_POST,
+  payload: post
 });
 
 export const createPost = post => ({

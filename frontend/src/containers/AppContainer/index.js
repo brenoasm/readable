@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
+
 import App from '../../components/App';
 
 import { getModalState } from '../../selectors/modalSelector';
@@ -27,4 +30,10 @@ const mapDispatchToProps = dispatch => ({
 
 AppContainer.propTypes = propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default compose(
+  withRouter,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(AppContainer);

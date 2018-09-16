@@ -55,17 +55,20 @@ const PostsReducer = (state = initialState, action) => {
         ...state,
         post: action.payload
       };
+
     case HANDLE_POSTS:
       return {
         ...state,
         posts: action.payload
       };
+
     case UPDATE_POST:
-      const { post, posts } = state;
+      const { posts } = state;
+      const post = posts.find(p => p.id === action.payload.id);
 
       const updatedPost = {
         ...post,
-        voteScore: post.id === action.payload.id ? action.payload.voteScore : post.voteScore
+        voteScore: action.payload.voteScore
       };
 
       return {
@@ -73,6 +76,7 @@ const PostsReducer = (state = initialState, action) => {
         posts: posts.map(post => (post.id === action.payload.id ? action.payload : post)),
         post: updatedPost
       };
+
     case CREATE_POST:
       return {
         ...state,
@@ -81,6 +85,7 @@ const PostsReducer = (state = initialState, action) => {
           action.payload
         ]
       }
+
     case EDIT_POST:
       const {
         formProperties
@@ -99,6 +104,7 @@ const PostsReducer = (state = initialState, action) => {
         ...state,
         formProperties: parsedFormProperties
       }
+
     default:
       return state;
   }

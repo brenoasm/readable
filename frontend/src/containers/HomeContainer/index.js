@@ -31,8 +31,8 @@ class HomeContainer extends Component {
     !!categoryName ? getCategoryPosts(categoryName) : getAllPosts();
   };
 
-  componentWillReceiveProps({ location, match }) {
-    if (location.pathname !== this.props.location.pathname) {
+  componentWillReceiveProps({ match }) {
+    if (match.params.categoryName !== this.props.match.params.categoryName) {
       this.checkWichPostsToLoad(match.params.categoryName);
     }
   }
