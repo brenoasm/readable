@@ -1,13 +1,17 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import { colors } from '../../theme';
 
 import PostRow from '../../components/PostRow';
 import NewPostButton from '../../components/buttons/NewPostButton';
+import BackButton from '../../components/buttons/BackButton';
 import WithForm from '../forms/WithForm';
 import CommentFormContainer from '../../containers/CommentFormContainer';
+import CommentForm from '../forms/CommentForm';
+import CommentRow from '../CommentRow';
 
 const propTypes = {
 
@@ -18,8 +22,17 @@ const StyledPostDetail = styled.div`
   flex-direction: column;
   margin-top: 10px;
 
-  button {
-    align-self: flex-end;
+  > div:first-child {
+    display: flex;
+
+    button:last-child {
+      margin-left: auto;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
   }
 
   > div {
@@ -32,26 +45,31 @@ const PostDetail = ({
   comments,
   modifyVotes,
   editPost,
-  showModal
+  showModal,
+  history
 }) => {
 
   return (
     <Fragment>
       {post && (
         <StyledPostDetail>
-          <NewPostButton handleClick={showModal} />
-          {/* Ver o motivo de as funções não funfar */}
+          <div>
+            <BackButton handleClick={history.goBack} />
+            <NewPostButton handleClick={showModal} />
+          </div>
           <PostRow modifyVotes={modifyVotes} post={post} editPost={editPost}>
             <div>
               <CommentFormContainer>
                 <WithForm>
-                  {/* Criar o form de comment */}
+                  <CommentForm />
                 </WithForm>
               </CommentFormContainer>
               {Array.isArray(comments) && (
                 <ul>
                   {comments.map(comment => (
-                    <li key={comment.id}>{comment.id}</li>
+                    <li key={comment.id}>
+                      <CommentRow comment={comment} />
+                    </li>
                   ))}
                 </ul>
               )}
@@ -65,4 +83,4 @@ const PostDetail = ({
 
 PostDetail.propTypes = propTypes;
 
-export default PostDetail;
+export default withRouter(PostDetail);

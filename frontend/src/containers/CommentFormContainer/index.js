@@ -22,7 +22,7 @@ class CommentFormContainer extends Component {
 
     return (
       <Fragment>
-        {Array.isArray(children) && React.cloneElement(children, {
+        {React.cloneElement(children, {
           formProperties
           // Passar o submit
         })}
