@@ -60,7 +60,8 @@ const Home = ({
   selectedSortMethod,
   getSelectedSortMethod,
   showModal,
-  editPost
+  editPost,
+  deletePost
 }) => (
   <Fragment>
     <ToolsRow

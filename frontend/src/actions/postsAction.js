@@ -9,7 +9,8 @@ import {
   HANDLE_POSTS,
   UPDATE_POST,
   CREATE_POST,
-  EDIT_POST
+  EDIT_POST,
+  DELETE_POST
 } from '.';
 
 import header from '../utils/header';
@@ -83,6 +84,11 @@ export const handleGetPost = id => dispatch => {
     .catch(err => console.log(err));
 };
 
+export const handleDeletePost = post => ({
+  type: DELETE_POST,
+  payload: post
+});
+
 export const handlePost = post => ({
   type: HANDLE_POST,
   payload: post
@@ -107,3 +113,11 @@ export const updatePost = post => ({
   type: UPDATE_POST,
   payload: post
 });
+
+export const deletePost = post => dispatch => {
+  const url = `http://localhost:3001/posts/${post.id}`;
+
+  axios.delete(url, header)
+    .then(({data}) => dispatch(handleDeletePost(data)))
+    .catch(err => console.log(err));
+};

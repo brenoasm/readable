@@ -11,7 +11,7 @@ import {
   getAllPosts,
   getCategoryPosts,
   modifyPostVoteValues,
-  editPost
+  editPost,
 } from '../../actions/postsAction';
 
 import {

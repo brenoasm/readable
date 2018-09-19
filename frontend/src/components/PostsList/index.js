@@ -16,7 +16,12 @@ const StyledPostsList = styled.ul`
   }
 `;
 
-const PostsList = ({ posts, modifyVotes, sortMethod, editPost }) => {
+const PostsList = ({
+  posts,
+  modifyVotes,
+  sortMethod,
+  editPost,
+  deletePost }) => {
   const orderedPosts =
     sortMethod === SORT_BY_DATE
       ? _.sortBy(posts, post => post.timestamp)
@@ -27,7 +32,11 @@ const PostsList = ({ posts, modifyVotes, sortMethod, editPost }) => {
       {Array.isArray(orderedPosts) &&
         orderedPosts.map(post => (
           <li key={post.id}>
-            <PostRow modifyVotes={modifyVotes} post={post} editPost={editPost} />
+            <PostRow
+              modifyVotes={modifyVotes}
+              post={post}
+              editPost={editPost}
+              deletePost={deletePost} />
           </li>
         ))}
     </StyledPostsList>

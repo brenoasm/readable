@@ -44,6 +44,7 @@ const PostDetail = ({
   post,
   comments,
   modifyVotes,
+  deletePost,
   editPost,
   showModal,
   history
@@ -57,7 +58,11 @@ const PostDetail = ({
             <BackButton handleClick={history.goBack} />
             <NewPostButton handleClick={showModal} />
           </div>
-          <PostRow modifyVotes={modifyVotes} post={post} editPost={editPost}>
+          <PostRow
+            modifyVotes={modifyVotes}
+            post={post}
+            editPost={editPost}
+            deletePost={deletePost}>
             <div>
               <CommentFormContainer>
                 <WithForm>

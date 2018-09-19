@@ -3,7 +3,8 @@ import {
   HANDLE_POSTS,
   UPDATE_POST,
   CREATE_POST,
-  EDIT_POST
+  EDIT_POST,
+  DELETE_POST
 } from '../actions/index';
 
 import {
@@ -103,6 +104,13 @@ const PostsReducer = (state = initialState, action) => {
       return {
         ...state,
         formProperties: parsedFormProperties
+      }
+
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.map(p => p.id === action.payload.id ? action.payload : p),
+        post: state.post.id === action.payload.id ? action.payload : state.post
       }
 
     default:

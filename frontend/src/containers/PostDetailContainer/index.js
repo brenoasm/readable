@@ -7,6 +7,7 @@ import {
   handleGetPost,
   modifyPostVoteValues,
   editPost,
+  deletePost,
   getAllPosts } from '../../actions/postsAction';
 
 import { getModalState } from '../../selectors/modalSelector';
@@ -45,7 +46,8 @@ const mapDispatchToProps = dispatch => ({
   editPost: (post) => compose(
     dispatch(showModal()),
     dispatch(editPost(post)),
-  )
+  ),
+  deletePost: (post) => dispatch(deletePost(post))
 });
 
 const mapStateToProps = ({ postsState, commentsState, modalState }) => ({
