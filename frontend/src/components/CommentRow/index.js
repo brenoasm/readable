@@ -43,7 +43,8 @@ const StyledCommentRow = styled.div`
 `;
 
 const CommentRow = ({
-  comment
+  comment,
+
 }) => {
 
   return (

@@ -55,7 +55,8 @@ class PostFormContainer extends Component {
           React.cloneElement(this.props.children, {
             formProperties: formProperties,
             onSubmit
-          })}
+          })
+        }
       </Fragment>
     );
   }

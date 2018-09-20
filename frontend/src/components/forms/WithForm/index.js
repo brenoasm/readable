@@ -70,7 +70,7 @@ class WithForm extends Component {
     }));
   }
 
-  handleSubmit() {
+  handleSubmit(args) {
     const { properties, disabledSubmit } = this.state.formProperties;
 
     if (disabledSubmit) return false;
@@ -83,7 +83,7 @@ class WithForm extends Component {
       {}
     );
 
-    this.props.onSubmit(propertiesToSubmit);
+    this.props.onSubmit(propertiesToSubmit, args);
   }
 
   handleClearForm = () => {

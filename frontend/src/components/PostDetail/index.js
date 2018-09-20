@@ -47,6 +47,8 @@ const PostDetail = ({
   deletePost,
   editPost,
   showModal,
+  submitComment,
+  deleteComment,
   history
 }) => {
 

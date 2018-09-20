@@ -14,6 +14,10 @@ import { getModalState } from '../../selectors/modalSelector';
 import { showModal, hideModal } from '../../actions/modalAction';
 
 import { getComments } from '../../selectors/commentsSelector';
+import {
+  submitComment,
+  deleteComment
+} from '../../actions/commentsAction';
 
 import PostDetail from '../../components/PostDetail';
 
@@ -23,10 +27,6 @@ class PostDetailContainer extends Component {
 
     getAllPosts();
     onLoad(match.params.id);
-  }
-
-  componentWillReceiveProps(prevProps) {
-
   }
 
   render() {
@@ -47,7 +47,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(showModal()),
     dispatch(editPost(post)),
   ),
-  deletePost: (post) => dispatch(deletePost(post))
+  deletePost: (post) => dispatch(deletePost(post)),
+  submitComment: (comment, parentId) => dispatch(submitComment(comment, parentId)),
+  deleteComment: id => dispatch(deleteComment(id)),
 });
 
 const mapStateToProps = ({ postsState, commentsState, modalState }) => ({
