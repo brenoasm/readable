@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { compose } from 'redux';
 
 import PostFormContainer from '../../../containers/PostFormContainer';
-import Modal from '../../modal';
+import Modal from '../Modal';
 import WithForm from '../../forms/WithForm'
 import PostForm from '../../forms/PostForm';
 import Button from '../../buttons/Button';

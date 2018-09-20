@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-import ModalPostForm from './modal/ModalPostForm';
+import ModalPostForm from './modals/ModalPostForm';
 
 import HomeContainer from '../containers/HomeContainer';
 import PostDetailContainer from '../containers/PostDetailContainer';
