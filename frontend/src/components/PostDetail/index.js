@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-import { colors } from '../../theme';
-
 import PostRow from '../../components/PostRow';
 import NewPostButton from '../../components/buttons/NewPostButton';
 import BackButton from '../../components/buttons/BackButton';
@@ -15,7 +13,27 @@ import CommentForm from '../forms/CommentForm';
 import CommentRow from '../CommentRow';
 
 const propTypes = {
+  post: PropTypes.object,
+  comments: PropTypes.arrayOf(PropTypes.object),
+  modifyVotes: PropTypes.func, // mudar esse nome para identificar que é de um post
+  deletePost: PropTypes.func,
+  editPost: PropTypes.func,
+  showModal: PropTypes.func,
+  editClick: PropTypes.func,
+  modifyCommentVoteValues: PropTypes.func,
+  deleteComment: PropTypes.func,
+};
 
+const defaultProps = {
+  post: {},
+  comments: [],
+  modifyVotes: () => {},
+  deletePost: () => {},
+  editPost: () => {},
+  showModal: () => {},
+  editClick: () => {},
+  modifyCommentVoteValues: () => {},
+  deleteComment: () => {},
 };
 
 const StyledPostDetail = styled.div`
@@ -49,6 +67,7 @@ const PostDetail = ({
   editPost,
   showModal,
   editClick,
+  modifyCommentVoteValues,
   deleteComment,
   history
 }) => {
@@ -83,7 +102,8 @@ const PostDetail = ({
                       <CommentRow
                         editClick={editClick}
                         deleteComment={deleteComment}
-                        comment={comment} />
+                        comment={comment}
+                        modifyCommentVoteValues={modifyCommentVoteValues} />
                     </li>
                   ))}
                 </ul>
@@ -97,5 +117,6 @@ const PostDetail = ({
 };
 
 PostDetail.propTypes = propTypes;
+PostDetail.defaultProps = defaultProps;
 
 export default withRouter(PostDetail);

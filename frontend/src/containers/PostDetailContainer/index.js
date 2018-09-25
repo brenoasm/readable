@@ -14,7 +14,10 @@ import { getModalState } from '../../selectors/modalSelector';
 import { showModal, hideModal } from '../../actions/modalAction';
 
 import { getComments } from '../../selectors/commentsSelector';
-import { handleEditCommentClick, deleteComment } from '../../actions/commentsAction';
+import {
+  handleEditCommentClick,
+  deleteComment,
+  modifyCommentVoteValues } from '../../actions/commentsAction';
 
 import PostDetail from '../../components/PostDetail';
 
@@ -46,7 +49,8 @@ const mapDispatchToProps = dispatch => ({
   ),
   deletePost: (post) => dispatch(deletePost(post)),
   editClick: (comment) => dispatch(handleEditCommentClick(comment)),
-  deleteComment: (id) => dispatch(deleteComment(id))
+  deleteComment: (id) => dispatch(deleteComment(id)),
+  modifyCommentVoteValues: (comment, vote) => dispatch(modifyCommentVoteValues(comment, vote))
 });
 
 const mapStateToProps = ({ postsState, commentsState, modalState }) => ({

@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const UP_VOTE = 'upVote';
-const DOWN_VOTE = 'downVote';
+import Ratings from '../../Ratings';
+
+import { UP_VOTE, DOWN_VOTE } from '../../../utils/ratings';
 
 const StyledPostRowRating = styled.div`
   i {
@@ -13,11 +14,11 @@ const StyledPostRowRating = styled.div`
 
 const PostRowRating = ({ post, modifyVotes }) => (
   <StyledPostRowRating>
-    <i title="Gostei!" onClick={() => modifyVotes(post, UP_VOTE)} className="fas fa-caret-up"></i>
-    <span>
-      {post.voteScore}
-    </span>
-    <i title="Não gostei!" onClick={() => modifyVotes(post, DOWN_VOTE)} className="fas fa-caret-down"></i>
+    <Ratings
+      voteScore={post.voteScore}
+      rateDown={() => modifyVotes(post, DOWN_VOTE)}
+      rateUp={() => modifyVotes(post, UP_VOTE)}
+    />
   </StyledPostRowRating>
 );
 

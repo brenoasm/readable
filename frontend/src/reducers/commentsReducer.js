@@ -69,9 +69,6 @@ const CommentsReducer = (state = initialState, action) => {
       }
 
     case UPDATE_COMMENT:
-      // const { comments } = state;
-      // Provavelmente terei que implementar o update do state Comment, que eu ainda n criei
-
       return {
         ...state,
         comments: state.comments.map(c => c.id === action.payload.id ? action.payload : c)

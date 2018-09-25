@@ -12,6 +12,19 @@ import {
 
 import header from '../utils/header';
 
+export const modifyCommentVoteValues = (comment, vote) => dispatch => {
+  const url = `http://localhost:3001/comments/${comment.id}`;
+
+  const body = {
+    option: vote
+  };
+
+  axios
+    .post(url, body, header)
+    .then(({ data }) => dispatch(updateComment(data)))
+    .catch(err => console.log(err));
+};
+
 export const handleGetComments = postId => dispatch => {
   const url = `http://localhost:3001/posts/${postId}/comments`;
 
