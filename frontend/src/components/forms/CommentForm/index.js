@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import * as _ from 'lodash';
 
 import { colors } from '../../../theme';
 
@@ -46,17 +45,13 @@ const CommentForm = ({
   handleClearForm,
   handleInput,
   handleSubmit,
-  properties, // Esse cara tem o parentId
+  properties,
   disabledSubmit
 }) => {
-  // const getParentId = (parentId) => handleSubmit;
-  // debugger
-  // const curriedSubmit = _.curry(getParentId());
-
-  // const composedSubmit = compose(
-  //   handleClearForm,
-  //   curriedSubmit
-  // );
+  const composedSubmit = compose(
+    handleClearForm,
+    () => handleSubmit(properties.parentId.value)
+  );
 
   return (
     <StyledCommentForm>
@@ -82,7 +77,7 @@ const CommentForm = ({
           text="Cancelar"
         />
         <Button
-          handleClick={() => handleSubmit(properties.parentId.value)}
+          handleClick={composedSubmit}
           type="button"
           text="Salvar"
           disabled={disabledSubmit}

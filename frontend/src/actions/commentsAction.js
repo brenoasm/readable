@@ -4,9 +4,10 @@ import { getRandomId } from '../utils/unique-key-generator';
 
 import {
   CREATE_COMMENT,
-  DELETE_COMMENT,
   UPDATE_COMMENT,
-  HANDLE_COMMENTS
+  HANDLE_COMMENTS,
+  HANDLE_EDIT_COMMENT_CLICK,
+  HANDLE_DELETE_COMMENT
 } from '.';
 
 import header from '../utils/header';
@@ -19,6 +20,16 @@ export const handleGetComments = postId => dispatch => {
       data
     }) => dispatch(handleComments(data)))
 };
+
+export const handleDeleteComment = (id) => ({
+  type: HANDLE_DELETE_COMMENT,
+  payload: id
+});
+
+export const handleEditCommentClick = comment => ({
+  type: HANDLE_EDIT_COMMENT_CLICK,
+  payload: comment
+});
 
 export const submitComment = (comment, parentId) => dispatch => {
   const min = 0;
@@ -55,10 +66,13 @@ export const createComment = comment => ({
   payload: comment
 });
 
-export const deleteComment = id => ({
-  type: DELETE_COMMENT,
-  payload: id
-});
+export const deleteComment = id => dispatch => {
+  const url = `http://localhost:3001/comments/${id}`;
+
+  axios.delete(url, header)
+    .then(() => dispatch(handleDeleteComment(id)))
+    .catch(err => console.log(err));
+};
 
 export const handleComments = comments => ({
   type: HANDLE_COMMENTS,

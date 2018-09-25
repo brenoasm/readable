@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as _ from 'lodash';
 
 import { getSelectedPostId } from '../../selectors/postsSelector';
 
@@ -16,7 +17,7 @@ class CommentFormContainer extends Component {
     formProperties: {}
   };
 
-  componentDidMount() {
+  componentDidUpdate(prevProps, prevState) {
     const { formProperties, parentId } = this.props;
 
     const parsedFormProperties = Object.keys(formProperties)
@@ -35,9 +36,14 @@ class CommentFormContainer extends Component {
 
       }, {});
 
-    this.setState({
-      formProperties: parsedFormProperties
-    });
+    if (
+      prevProps &&
+      !_.isEqual(prevState.formProperties, parsedFormProperties)
+    ) {
+      this.setState({
+        formProperties: parsedFormProperties
+      });
+    }
   }
 
   render() {
@@ -63,7 +69,7 @@ const mapStateToProps = ({ commentsState, postsState }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (comment, parentId) => dispatch(submitComment(comment, parentId))
+  onSubmit: (comment, parentId) => dispatch(submitComment(comment, parentId)),
 });
 
 CommentFormContainer.propTypes = propTypes;

@@ -1,8 +1,9 @@
 import {
   CREATE_COMMENT,
-  DELETE_COMMENT,
+  HANDLE_DELETE_COMMENT,
   UPDATE_COMMENT,
-  HANDLE_COMMENTS } from '../actions/index';
+  HANDLE_COMMENTS,
+  HANDLE_EDIT_COMMENT_CLICK } from '../actions/index';
 
 import { validValue } from '../utils/validations';
 
@@ -33,6 +34,23 @@ const initialState = {
 
 const CommentsReducer = (state = initialState, action) => {
   switch(action.type) {
+    case HANDLE_EDIT_COMMENT_CLICK:
+      const { formProperties } = state;
+
+      const parsedFormProperties = Object.keys(formProperties).reduce((newObj, param) => ({
+        ...newObj,
+        [param]: {
+          ...formProperties[param],
+          value: action.payload[param],
+          isValid: true,
+        }
+      }), {})
+
+      return {
+        ...state,
+        formProperties: parsedFormProperties
+      }
+
     case HANDLE_COMMENTS:
       return {
         ...state,
@@ -40,7 +58,6 @@ const CommentsReducer = (state = initialState, action) => {
       }
 
     case CREATE_COMMENT:
-    debugger
       const { comments } = state;
 
       return {
@@ -60,7 +77,7 @@ const CommentsReducer = (state = initialState, action) => {
         comments: state.comments.map(c => c.id === action.payload.id ? action.payload : c)
       }
 
-    case DELETE_COMMENT:
+    case HANDLE_DELETE_COMMENT:
       return {
         ...state,
         comments: state.comments.filter(c => c.id !== action.payload)

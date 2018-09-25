@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { colors } from '../../theme';
 import EditIcon from '../icons/EditIcon';
+import DeleteIcon from '../icons/DeleteIcon';
 
 const propTypes = {};
 
@@ -22,12 +23,16 @@ const StyledCommentRow = styled.div`
       font-weight: 600;
     }
 
-    span:last-child {
+    div {
       margin-left: auto;
+
+      span {
+        margin-left: 10px;
+      }
     }
   }
 
-  div:last-child {
+  > div:last-child {
     background-color: ${colors.white};
     box-shadow: 0 3px 5px ${colors.primary.primaryFour};
     border-radius: 5px
@@ -44,14 +49,18 @@ const StyledCommentRow = styled.div`
 
 const CommentRow = ({
   comment,
-
+  deleteComment,
+  editClick
 }) => {
 
   return (
     <StyledCommentRow>
       <div>
         <span>{comment.author}</span>
-        <EditIcon title="Editar comentário" handleEdit={() => {}} />
+        <div>
+          <EditIcon title="Editar comentário" handleEdit={() => editClick(comment)} />
+          <DeleteIcon title="Remover comentário" handleDelete={() => deleteComment(comment.id)} />
+        </div>
       </div>
       <div>
         <p>{comment.body}</p>

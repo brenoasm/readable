@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
 import { colors } from '../../theme';
 
@@ -47,10 +48,14 @@ const PostDetail = ({
   deletePost,
   editPost,
   showModal,
-  submitComment,
+  editClick,
   deleteComment,
   history
 }) => {
+  const composedDeletePost = compose(
+    () => history.push('/'),
+    () => deletePost(post)
+  );
 
   return (
     <Fragment>
@@ -64,7 +69,7 @@ const PostDetail = ({
             modifyVotes={modifyVotes}
             post={post}
             editPost={editPost}
-            deletePost={deletePost}>
+            deletePost={composedDeletePost}>
             <div>
               <CommentFormContainer>
                 <WithForm>
@@ -75,7 +80,10 @@ const PostDetail = ({
                 <ul>
                   {comments.map(comment => (
                     <li key={comment.id}>
-                      <CommentRow comment={comment} />
+                      <CommentRow
+                        editClick={editClick}
+                        deleteComment={deleteComment}
+                        comment={comment} />
                     </li>
                   ))}
                 </ul>
