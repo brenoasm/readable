@@ -12,7 +12,7 @@ import {
 
 import { validValue, validOption } from '../utils/validations';
 
-const initialState = {
+export const postsState = {
   posts: [],
   post: null,
   formProperties: {
@@ -51,7 +51,7 @@ const initialState = {
   }
 };
 
-const PostsReducer = (state = initialState, action) => {
+const PostsReducer = (state = postsState, action) => {
   switch (action.type) {
     case CHANGE_COMMENTS_COUNT:
       const { post } = state;

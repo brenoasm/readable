@@ -1,8 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
 import ModalPostForm from './modals/ModalPostForm';
+
 
 import HomeContainer from '../containers/HomeContainer';
 import PostDetailContainer from '../containers/PostDetailContainer';
@@ -33,11 +35,13 @@ const App = ({
   <StyledApp>
     <div>&nbsp;</div>
     <div>
-      <Switch>
-        <Route path="/posts/:id" component={PostDetailContainer} />
-        <Route path="/:categoryName" component={HomeContainer} />
-        <Route path="/" exact component={HomeContainer} />
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/posts/:id" component={PostDetailContainer} />
+          <Route path="/:categoryName" component={HomeContainer} />
+          <Route path="/" exact component={HomeContainer} />
+        </Switch>
+      </BrowserRouter>
      <ModalPostForm modalIsVisible={modalIsVisible} handleClose={hideModal} />
     </div>
   </StyledApp>

@@ -7,7 +7,7 @@ import {
 
 import { validValue } from '../utils/validations';
 
-const initialState = {
+export const commentsState = {
   comments: [],
   formProperties: {
     id: {
@@ -32,7 +32,7 @@ const initialState = {
   }
 };
 
-const CommentsReducer = (state = initialState, action) => {
+const CommentsReducer = (state = commentsState, action) => {
   switch(action.type) {
     case HANDLE_EDIT_COMMENT_CLICK:
       const { formProperties } = state;

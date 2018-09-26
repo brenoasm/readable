@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import CategoryReducer from './categoryReducer';
-import PostsReducer from './postsReducer';
-import CommentsReducer from './commentsReducer';
-import SortMethodReducer from './sortMethodReducer';
-import ModalReducer from './modalReducer';
+import CategoryReducer, { categoriesState } from './categoryReducer';
+import PostsReducer, { postsState } from './postsReducer';
+import CommentsReducer, { commentsState } from './commentsReducer';
+import SortMethodReducer, { sortMethodState } from './sortMethodReducer';
+import ModalReducer, { modalState } from './modalReducer';
 
 export default combineReducers({
   categoryState: CategoryReducer,
@@ -13,3 +13,11 @@ export default combineReducers({
   sortMethodsState: SortMethodReducer,
   modalState: ModalReducer
 });
+
+export {
+  modalState,
+  categoriesState,
+  postsState,
+  commentsState,
+  sortMethodState
+};

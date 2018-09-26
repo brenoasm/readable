@@ -1,12 +1,12 @@
 import sortMethods, { SORT_BY_DATE } from '../utils/sort-methods';
 import { HANDLE_SORT_METHOD } from '../actions';
 
-const initialState = {
+export const sortMethodState = {
   sortMethods,
   sortBy: SORT_BY_DATE
 };
 
-const SortMethodReducer = (state = initialState, action) => {
+const SortMethodReducer = (state = sortMethodState, action) => {
   switch(action.type) {
     case HANDLE_SORT_METHOD:
       return {

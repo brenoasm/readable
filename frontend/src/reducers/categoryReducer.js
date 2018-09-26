@@ -1,10 +1,10 @@
 import { GET_CATEGORIES } from '../actions';
 
-const initialState = {
+export const categoriesState = {
   categories: []
 };
 
-const CategoryReducer = (state = initialState, action) => {
+const CategoryReducer = (state = categoriesState, action) => {
   switch (action.type) {
     case GET_CATEGORIES:
       return {

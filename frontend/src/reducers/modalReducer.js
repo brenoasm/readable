@@ -1,10 +1,10 @@
 import { TOGGLE_MODAL_VISIBILITY } from '../actions';
 
-const initialState = {
+export const modalState = {
   show: false
 };
 
-const ModalReduer = (state = initialState, action) => {
+const ModalReducer = (state = modalState, action) => {
   switch (action.type) {
     case TOGGLE_MODAL_VISIBILITY:
       return {
@@ -16,4 +16,4 @@ const ModalReduer = (state = initialState, action) => {
   }
 };
 
-export default ModalReduer;
+export default ModalReducer;
