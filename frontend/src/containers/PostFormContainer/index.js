@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { compose } from 'redux';
 import * as _ from 'lodash';
 
-import { getFormProperties } from '../../selectors/postsSelector';
+import { getFormProperties, getPost } from '../../selectors/postsSelector';
 import { getCategories } from '../../selectors/categoriesSelector';
+import { fetchCategories } from '../../actions/categoriesAction';
 
 import { submitPost } from '../../actions/postsAction';
 
@@ -14,18 +13,15 @@ class PostFormContainer extends Component {
     formProperties: {}
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    const { params } = this.props.match;
+  componentDidMount() {
+    this.props.fetchCategories();
+  }
 
-    const parsedCategories = this.props.categories
-      .filter(
-        category =>
-          !params.categoryName || category.name === params.categoryName
-      )
-      .map(category => ({
-        label: category.name,
-        value: category.name
-      }));
+  componentDidUpdate(prevProps, prevState) {
+    const parsedCategories = this.props.categories.map(category => ({
+      label: category.name,
+      value: category.name
+    }));
 
     const parsedFormProperties = {
       ...this.props.postFormProperties,
@@ -55,26 +51,21 @@ class PostFormContainer extends Component {
           React.cloneElement(this.props.children, {
             formProperties: formProperties,
             onSubmit
-          })
-        }
+          })}
       </Fragment>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: post => dispatch(submitPost(post))
+  onSubmit: post => dispatch(submitPost(post)),
+  fetchCategories: () => dispatch(fetchCategories())
 });
 
 const mapStateToProps = ({ postsState, categoryState }) => ({
   postFormProperties: getFormProperties(postsState),
-  categories: getCategories(categoryState)
+  categories: getCategories(categoryState),
+  post: getPost(postsState)
 });
 
-export default compose(
-  withRouter,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-)(PostFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PostFormContainer);

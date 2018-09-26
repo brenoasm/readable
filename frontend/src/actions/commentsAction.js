@@ -1,6 +1,9 @@
 import axios from 'axios';
 
+import { changeCommentsCount } from './postsAction';
+
 import { getRandomId } from '../utils/unique-key-generator';
+import { SUBTRACT, ADD } from '../utils/count-modifiers';
 
 import {
   CREATE_COMMENT,
@@ -64,7 +67,10 @@ export const submitComment = (comment, parentId) => dispatch => {
       .catch(err => console.error(err));
   } else {
     axios.post('http://localhost:3001/comments', body, header)
-      .then(({data}) => dispatch(createComment(data)))
+      .then(({data}) => {
+        dispatch(createComment(data))
+        dispatch(changeCommentsCount(ADD))
+      })
       .catch(err => console.error(err));
   }
 };
@@ -83,7 +89,10 @@ export const deleteComment = id => dispatch => {
   const url = `http://localhost:3001/comments/${id}`;
 
   axios.delete(url, header)
-    .then(() => dispatch(handleDeleteComment(id)))
+    .then(() => {
+      dispatch(handleDeleteComment(id))
+      dispatch(changeCommentsCount(SUBTRACT))
+    })
     .catch(err => console.log(err));
 };
 

@@ -50,7 +50,7 @@ class HomeContainer extends Component {
 const mapDispatchToProps = dispatch => ({
   getAllPosts: () => dispatch(getAllPosts()),
   getCategoryPosts: categoryName => dispatch(getCategoryPosts(categoryName)),
-  modifyVotes: (post, vote) => dispatch(modifyPostVoteValues(post, vote)),
+  modifyPostVoteValues: (post, vote) => dispatch(modifyPostVoteValues(post, vote)),
   getSelectedSortMethod: value => dispatch(handleSortMethod(value)),
   showModal: () => dispatch(showModal()),
   fetchCategories: () => dispatch(fetchCategories()),

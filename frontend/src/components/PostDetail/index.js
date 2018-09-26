@@ -10,12 +10,12 @@ import BackButton from '../../components/buttons/BackButton';
 import WithForm from '../forms/WithForm';
 import CommentFormContainer from '../../containers/CommentFormContainer';
 import CommentForm from '../forms/CommentForm';
-import CommentRow from '../CommentRow';
+import CommentsList from '../CommentsList';
 
 const propTypes = {
   post: PropTypes.object,
   comments: PropTypes.arrayOf(PropTypes.object),
-  modifyVotes: PropTypes.func, // mudar esse nome para identificar que é de um post
+  modifyPostVoteValues: PropTypes.func,
   deletePost: PropTypes.func,
   editPost: PropTypes.func,
   showModal: PropTypes.func,
@@ -27,7 +27,7 @@ const propTypes = {
 const defaultProps = {
   post: {},
   comments: [],
-  modifyVotes: () => {},
+  modifyPostVoteValues: () => {},
   deletePost: () => {},
   editPost: () => {},
   showModal: () => {},
@@ -49,11 +49,6 @@ const StyledPostDetail = styled.div`
     }
   }
 
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-
   > div {
     margin-top: 10px;
   }
@@ -62,7 +57,7 @@ const StyledPostDetail = styled.div`
 const PostDetail = ({
   post,
   comments,
-  modifyVotes,
+  modifyPostVoteValues,
   deletePost,
   editPost,
   showModal,
@@ -85,7 +80,7 @@ const PostDetail = ({
             <NewPostButton handleClick={showModal} />
           </div>
           <PostRow
-            modifyVotes={modifyVotes}
+            modifyPostVoteValues={modifyPostVoteValues}
             post={post}
             editPost={editPost}
             deletePost={composedDeletePost}>
@@ -95,19 +90,12 @@ const PostDetail = ({
                   <CommentForm />
                 </WithForm>
               </CommentFormContainer>
-              {Array.isArray(comments) && (
-                <ul>
-                  {comments.map(comment => (
-                    <li key={comment.id}>
-                      <CommentRow
-                        editClick={editClick}
-                        deleteComment={deleteComment}
-                        comment={comment}
-                        modifyCommentVoteValues={modifyCommentVoteValues} />
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <CommentsList
+                comments={comments}
+                editClick={editClick}
+                deleteComment={deleteComment}
+                modifyCommentVoteValues={modifyCommentVoteValues}
+              />
             </div>
           </PostRow>
         </StyledPostDetail>

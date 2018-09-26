@@ -22,9 +22,6 @@ class WithForm extends Component {
     this.state = {
       formProperties: {}
     };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleInput = this.handleInput.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +38,7 @@ class WithForm extends Component {
     }
   }
 
-  handleInput(e) {
+  handleInput = (e) => {
     const { properties } = this.state.formProperties;
 
     const value = e.target.value;
@@ -70,7 +67,7 @@ class WithForm extends Component {
     }));
   }
 
-  handleSubmit(args) {
+  handleSubmit = (args) => {
     const { properties, disabledSubmit } = this.state.formProperties;
 
     if (disabledSubmit) return false;

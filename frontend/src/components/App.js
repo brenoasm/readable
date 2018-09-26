@@ -13,13 +13,13 @@ const StyledApp = styled.div`
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto 1fr;
 
-  .header {
-    min-height: 60px;
+  > div:first-child {
+    min-height: 30px;
     grid-column: 2 / 12;
     grid-row: 1 / span(1);
   }
 
-  .body {
+  > div:last-child {
     grid-column: 2 / 12;
     grid-row: 2 / span(1);
     padding: 20px;
@@ -31,12 +31,8 @@ const App = ({
   hideModal
 }) => (
   <StyledApp>
-    <div className="header">
-      <ul>
-
-      </ul>
-    </div>
-    <div className="body">
+    <div>&nbsp;</div>
+    <div>
       <Switch>
         <Route path="/posts/:id" component={PostDetailContainer} />
         <Route path="/:categoryName" component={HomeContainer} />

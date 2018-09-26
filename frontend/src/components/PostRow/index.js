@@ -42,7 +42,7 @@ const StyledPostRow = styled.div`
 
 const PostRow = ({
   post,
-  modifyVotes,
+  modifyPostVoteValues,
   editPost,
   deletePost,
   children }) => (
@@ -50,7 +50,7 @@ const PostRow = ({
     <StyledPostRow>
       <PostRowDetail post={post} />
       <PostRowTitle post={post} editPost={editPost} deletePost={deletePost} />
-      <PostRowRating post={post} modifyVotes={modifyVotes}/>
+      <PostRowRating post={post} modifyPostVoteValues={modifyPostVoteValues}/>
     </StyledPostRow>
     <Fragment>
       {children}

@@ -10,10 +10,16 @@ import {
   UPDATE_POST,
   CREATE_POST,
   EDIT_POST,
-  DELETE_POST
+  DELETE_POST,
+  CHANGE_COMMENTS_COUNT
 } from '.';
 
 import header from '../utils/header';
+
+export const changeCommentsCount = (modifier) => ({
+  type: CHANGE_COMMENTS_COUNT,
+  payload: modifier
+});
 
 export const submitPost = post => dispatch => {
   const min = 0;

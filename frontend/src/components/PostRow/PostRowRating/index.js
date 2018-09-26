@@ -12,12 +12,12 @@ const StyledPostRowRating = styled.div`
   }
 `;
 
-const PostRowRating = ({ post, modifyVotes }) => (
+const PostRowRating = ({ post, modifyPostVoteValues }) => (
   <StyledPostRowRating>
     <Ratings
       voteScore={post.voteScore}
-      rateDown={() => modifyVotes(post, DOWN_VOTE)}
-      rateUp={() => modifyVotes(post, UP_VOTE)}
+      rateDown={() => modifyPostVoteValues(post, DOWN_VOTE)}
+      rateUp={() => modifyPostVoteValues(post, UP_VOTE)}
     />
   </StyledPostRowRating>
 );

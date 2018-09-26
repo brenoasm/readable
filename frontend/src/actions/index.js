@@ -6,6 +6,7 @@ export const UPDATE_POST = 'update_post';
 export const CREATE_POST = 'create_post';
 export const EDIT_POST = 'edit_post';
 export const DELETE_POST = 'delete_post';
+export const CHANGE_COMMENTS_COUNT = 'change_comments_count';
 
 export const HANDLE_COMMENTS = 'handle_comments';
 export const HANDLE_DELETE_COMMENT = 'handle_delete_comment';

@@ -11,7 +11,7 @@ import ToolsRow from '../ToolsRow';
 const propTypes = {
   posts: PropTypes.array,
   categories: PropTypes.array,
-  modifyVotes: PropTypes.func,
+  modifyPostVoteValues: PropTypes.func,
   sortMethods: PropTypes.array,
   selectedSortMethod: PropTypes.string,
   showModal: PropTypes.func,
@@ -22,7 +22,7 @@ const propTypes = {
 const defaultProps = {
   posts: [],
   categories: [],
-  modifyVotes: () => {},
+  modifyPostVoteValues: () => {},
   sortMethods: [],
   selectedSortMethod: '',
   showModal: () => {}
@@ -34,7 +34,7 @@ const StyledHome = styled.div`
   background-color: ${colors.primary.primaryFour};
   margin-top: 10px;
 
-  .category-wrapper {
+  > div:first-child {
     display: flex;
     flex-direction: column;
     background-color: ${colors.primary.primaryFive};
@@ -43,9 +43,9 @@ const StyledHome = styled.div`
     border-right: 1px solid ${colors.primary.primaryFive};
   }
 
-  .posts-wrapper {
+  > div:last-child {
     min-width: calc(100% - 200px);
-    max-height: 575px;
+    max-height: 580px;
     overflow-y: auto;
     background-color: ${colors.primary.primaryFour};
     box-shadow: 0 2px 5px ${colors.primary.primaryTwo};
@@ -55,7 +55,7 @@ const StyledHome = styled.div`
 const Home = ({
   posts,
   categories,
-  modifyVotes,
+  modifyPostVoteValues,
   sortMethods,
   selectedSortMethod,
   getSelectedSortMethod,
@@ -70,13 +70,13 @@ const Home = ({
       onFilterChange={getSelectedSortMethod}
     />
     <StyledHome>
-      <div className="category-wrapper">
+      <div>
         <CategoryList categories={categories} />
       </div>
-      <div className="posts-wrapper">
+      <div>
         <PostsList
           posts={posts}
-          modifyVotes={modifyVotes}
+          modifyPostVoteValues={modifyPostVoteValues}
           sortMethod={selectedSortMethod}
           editPost={editPost}
         />

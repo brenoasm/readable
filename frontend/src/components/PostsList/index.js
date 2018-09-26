@@ -18,13 +18,13 @@ const StyledPostsList = styled.ul`
 
 const PostsList = ({
   posts,
-  modifyVotes,
+  modifyPostVoteValues,
   sortMethod,
   editPost,
   deletePost }) => {
   const orderedPosts =
     sortMethod === SORT_BY_DATE
-      ? _.sortBy(posts, post => post.timestamp)
+      ? _.sortBy(posts, post => post.timestamp).reverse()
       : _.sortBy(posts, post => post.voteScore).reverse();
 
   return (
@@ -33,7 +33,7 @@ const PostsList = ({
         orderedPosts.map(post => (
           <li key={post.id}>
             <PostRow
-              modifyVotes={modifyVotes}
+              modifyPostVoteValues={modifyPostVoteValues}
               post={post}
               editPost={editPost}
               deletePost={deletePost} />

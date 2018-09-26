@@ -23,14 +23,13 @@ import PostDetail from '../../components/PostDetail';
 
 class PostDetailContainer extends Component {
   componentDidMount() {
-    const { match, onLoad, getAllPosts } = this.props;
+    const { match, fetchPost, getAllPosts } = this.props;
 
     getAllPosts();
-    onLoad(match.params.id);
+    fetchPost(match.params.id);
   }
 
   render() {
-
     return (
       <PostDetail {...this.props} />
     );
@@ -38,9 +37,9 @@ class PostDetailContainer extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onLoad: id => dispatch(handleGetPost(id)),
+  fetchPost: id => dispatch(handleGetPost(id)),
   getAllPosts: () => dispatch(getAllPosts()),
-  modifyVotes: (post, vote) => dispatch(modifyPostVoteValues(post, vote)),
+  modifyPostVoteValues: (post, vote) => dispatch(modifyPostVoteValues(post, vote)),
   showModal: () => dispatch(showModal()),
   hideModal: () => dispatch(hideModal()),
   editPost: (post) => compose(
