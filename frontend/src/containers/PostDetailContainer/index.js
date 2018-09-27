@@ -20,6 +20,7 @@ import {
   modifyCommentVoteValues } from '../../actions/commentsAction';
 
 import PostDetail from '../../components/PostDetail';
+import {withRouter} from 'react-router-dom';
 
 class PostDetailContainer extends Component {
   componentDidMount() {
@@ -27,6 +28,14 @@ class PostDetailContainer extends Component {
 
     getAllPosts();
     fetchPost(match.params.id);
+  }
+
+  componentDidUpdate() {
+    const { post, history } = this.props;
+
+    if (Object.keys(post).length === 0) {
+      history.push('/not-found');
+    }
   }
 
   render() {
@@ -58,4 +67,7 @@ const mapStateToProps = ({ postsState, commentsState, modalState }) => ({
   modalIsVisible: getModalState(modalState)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetailContainer);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(PostDetailContainer);

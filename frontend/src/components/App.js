@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 
 import ModalPostForm from './modals/ModalPostForm';
-
+import NotFound from '../components/errorsPages/Not-found';
 
 import HomeContainer from '../containers/HomeContainer';
 import PostDetailContainer from '../containers/PostDetailContainer';
@@ -37,6 +37,7 @@ const App = ({
     <div>
       <BrowserRouter>
         <Switch>
+          <Route path="/not-found" component={NotFound} />
           <Route path="/posts/:id" component={PostDetailContainer} />
           <Route path="/:categoryName" component={HomeContainer} />
           <Route path="/" exact component={HomeContainer} />
