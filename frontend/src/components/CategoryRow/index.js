@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { colors } from '../../theme';
 
@@ -32,18 +32,15 @@ const StyledCategoryRow = styled.div`
   }
 `;
 
-const CategoryRow = ({ category, location }) => {
-  const isActive = location.pathname === `/${category.path}`;
-
-  return (
-    <StyledCategoryRow className={isActive ? 'active' : ''}>
-      <Link to={category.path}>
-        {category.name}
-      </Link>
-    </StyledCategoryRow>
-  );
-};
+const CategoryRow = ({ category, activeRoute }) => (
+  <StyledCategoryRow className={activeRoute === `/${category.path}`
+    ? 'active' : ''}>
+    <Link to={category.path}>
+      {category.name}
+    </Link>
+  </StyledCategoryRow>
+);
 
 CategoryRow.defaultProps = defaultProps;
 
-export default withRouter(CategoryRow);
+export default CategoryRow;

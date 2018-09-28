@@ -1,9 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import EditIcon from '../../icons/EditIcon';
 import DeleteIcon from '../../icons/DeleteIcon';
 
+const propTypes = {
+  post: PropTypes.object,
+  editPost: PropTypes.func,
+  deletePost: PropTypes.func
+};
+
+const defaultProps = {
+  post: {
+    title: '',
+    body: '',
+    commentCount: 0,
+    id: ''
+  },
+  editPost: () => {},
+  deletePost: () => {}
+};
 
 const StyledPostRowTitle = styled.div`
   i {
@@ -62,5 +80,8 @@ const PostRowTitle = ({ post, editPost, deletePost }) => (
     </div>
   </StyledPostRowTitle>
 );
+
+PostRowTitle.propTypes = propTypes;
+PostRowTitle.defaultProps = defaultProps;
 
 export default PostRowTitle;

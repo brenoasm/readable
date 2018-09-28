@@ -1,6 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { convertDate } from '../../../utils/converters';
+
+const propTypes = {
+  post: PropTypes.object
+};
+
+const defaultProps = {
+  post: {
+    author: '',
+    timestamp: null
+  }
+};
 
 const PostRowDetail = ({ post }) => (
   <div>
@@ -17,5 +29,8 @@ const PostRowDetail = ({ post }) => (
     </span>
   </div>
 );
+
+PostRowDetail.propTypes = propTypes;
+PostRowDetail.defaultProps = defaultProps;
 
 export default PostRowDetail;

@@ -1,13 +1,10 @@
+/* eslint-disable */
+
 import React from 'react';
-import { shallow } from 'enzyme';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 
 import CommentFormContainer from './';
 
 import { commentsState, postsState } from '../../reducers';
-
-const mockStore = configureStore([thunk]);
 
 describe('CommentFormContainer', () => {
   let store, wrapper;
@@ -60,12 +57,26 @@ describe('CommentFormContainer', () => {
     wrapper = shallow(<CommentFormContainer />, { context: { store } });
   });
 
+  afterEach(() => {
+    wrapper.unmount();
+  })
+
+  it('renders the container', () => {
+    expect(wrapper.length).toEqual(1);
+  })
+
   it('map state and actions to props correctly', () => {
-    expect(wrapper.props()).toEqual(expect.objectContaining({
-      formProperties: expect.any(Object),
-      parentId: expect.any(String),
+    expect(wrapper.props()).toEqual({
+      formProperties: {
+        id: { isFormField: false },
+        parentId: { isFormField: false },
+        timestamp: { isFormField: false },
+        body: { validations: expect.any(Array), isFormField: true, isValid: null },
+        author: { validations: expect.any(Array), isFormField: true, isValid: null }
+      },
+      parentId: '8xf0y6ziyjabvozdd253nd',
       onSubmit: expect.any(Function)
-    }));
+    });
   })
 
 });

@@ -1,9 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Ratings from '../../Ratings';
 
 import { UP_VOTE, DOWN_VOTE } from '../../../utils/ratings';
+
+const propTypes = {
+  post: PropTypes.object,
+  modifyCommentVoteValues: PropTypes.func
+};
+
+const defaultProps = {
+  post: {
+    voteScore: 0
+  },
+  modifyCommentVoteValues: () => {}
+};
 
 const StyledPostRowRating = styled.div`
   i {
@@ -21,5 +34,8 @@ const PostRowRating = ({ post, modifyPostVoteValues }) => (
     />
   </StyledPostRowRating>
 );
+
+PostRowRating.propTypes = propTypes;
+PostRowRating.defaultProps = defaultProps;
 
 export default PostRowRating;

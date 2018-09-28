@@ -23,6 +23,7 @@ class PostFormContainer extends Component {
       value: category.name
     }));
 
+
     const parsedFormProperties = {
       ...this.props.postFormProperties,
       category: {

@@ -1,10 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import * as _ from 'lodash';
+import PropTypes from 'prop-types';
 
 import PostRow from '../PostRow';
 
 import { SORT_BY_DATE } from '../../utils/sort-methods';
+
+const propTypes = {
+  posts: PropTypes.array,
+  modifyPostVoteValues: PropTypes.func,
+  sortMethod: PropTypes.string,
+  editPost: PropTypes.func,
+  deletePost: PropTypes.func
+};
+
+const defaultProps = {
+  posts: [],
+  modifyPostVoteValues: () => {},
+  sortMethod: SORT_BY_DATE,
+  editPost: () => {},
+  deletePost: () => {}
+};
 
 const StyledPostsList = styled.ul`
   display: flex;
@@ -42,5 +59,8 @@ const PostsList = ({
     </StyledPostsList>
   );
 };
+
+PostsList.propTypes = propTypes;
+PostsList.defaultProps = defaultProps;
 
 export default PostsList;

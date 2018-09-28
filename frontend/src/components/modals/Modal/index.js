@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { colors } from '../../../theme';
 
@@ -11,6 +12,20 @@ const ModalContents = ({ children, ...rest }) => (
     }
   </div>
 );
+
+const propTypes = {
+  show: PropTypes.bool,
+  handleClick: PropTypes.func,
+  children: PropTypes.func,
+  className: PropTypes.string
+};
+
+const defaultProps = {
+  show: false,
+  handleClick: () => {},
+  children: () => {},
+  className: ''
+};
 
 const StyledModal = styled.div`
   display: ${props => (props.show ? 'block' : 'none')};
@@ -62,5 +77,8 @@ class Modal extends Component {
     );
   }
 };
+
+Modal.propTypes = propTypes;
+Modal.defaultProps = defaultProps;
 
 export default Modal;

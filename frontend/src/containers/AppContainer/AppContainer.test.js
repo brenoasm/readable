@@ -1,13 +1,10 @@
+/* eslint-disable */
+
 import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { shallow } from 'enzyme';
 
 import { modalState } from '../../reducers';
 
 import AppContainer from './';
-
-const mockStore = configureStore([thunk]);
 
 describe('AppContainer', () => {
   let wrapper, store;
@@ -22,6 +19,10 @@ describe('AppContainer', () => {
     store = mockStore(initialState);
     store.dispatch = jest.fn();
     wrapper = shallow(<AppContainer/>, { context: { store } });
+  })
+
+  afterEach(() => {
+    wrapper.unmount();
   })
 
   it('map state and actions to props correctly', () => {

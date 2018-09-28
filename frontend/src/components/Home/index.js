@@ -9,23 +9,29 @@ import PostsList from '../PostsList';
 import ToolsRow from '../ToolsRow';
 
 const propTypes = {
-  posts: PropTypes.array,
-  categories: PropTypes.array,
+  posts: PropTypes.arrayOf(PropTypes.object),
+  categories: PropTypes.arrayOf(PropTypes.object),
   modifyPostVoteValues: PropTypes.func,
-  sortMethods: PropTypes.array,
+  sortMethods: PropTypes.arrayOf(PropTypes.object),
   selectedSortMethod: PropTypes.string,
+  getSelectedSortMethod: PropTypes.func,
   showModal: PropTypes.func,
-  hideModal: PropTypes.func,
-  modalIsVisible: PropTypes.bool
+  editPost: PropTypes.func,
+  deletePost: PropTypes.func,
+  activeRoute: PropTypes.string
 };
 
 const defaultProps = {
-  posts: [],
-  categories: [],
+  posts: null,
+  categories: null,
   modifyPostVoteValues: () => {},
   sortMethods: [],
   selectedSortMethod: '',
-  showModal: () => {}
+  getSelectedSortMethod: () => {},
+  showModal: () => {},
+  editPost: () => {},
+  deletePost: () => {},
+  activeRoute: ''
 };
 
 const StyledHome = styled.div`
@@ -61,7 +67,8 @@ const Home = ({
   getSelectedSortMethod,
   showModal,
   editPost,
-  deletePost
+  deletePost,
+  activeRoute
 }) => (
   <Fragment>
     <ToolsRow
@@ -72,20 +79,29 @@ const Home = ({
     />
     <StyledHome>
       <div>
-        <CategoryList categories={categories} />
+        {Array.isArray(categories) && (
+          <CategoryList
+            categories={categories}
+            activeRoute={activeRoute}
+          />
+        )}
       </div>
       <div>
-        <PostsList
-          posts={posts}
-          modifyPostVoteValues={modifyPostVoteValues}
-          sortMethod={selectedSortMethod}
-          editPost={editPost}
-          deletePost={deletePost}
-        />
+        {Array.isArray(posts) && (
+          <PostsList
+            posts={posts}
+            modifyPostVoteValues={modifyPostVoteValues}
+            sortMethod={selectedSortMethod}
+            editPost={editPost}
+            deletePost={deletePost}
+          />
+        )}
       </div>
     </StyledHome>
   </Fragment>
 );
+
+Home.displayName = 'Home';
 
 Home.propTypes = propTypes;
 Home.defaultProps = defaultProps;

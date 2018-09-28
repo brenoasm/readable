@@ -26,6 +26,8 @@ const StyledCommentsList = styled.div`
   }
 `;
 
+StyledCommentsList.displayName = 'StyledCommentsList';
+
 const CommentsList = ({
   comments,
   editClick,
@@ -52,6 +54,8 @@ const CommentsList = ({
     </StyledCommentsList>
   )
 };
+
+CommentsList.displayName = 'CommentsList';
 
 CommentsList.propTypes = propTypes;
 CommentsList.defaultProps = defaultProps;

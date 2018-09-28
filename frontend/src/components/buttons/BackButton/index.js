@@ -7,10 +7,15 @@ const propTypes = {
   handleClick: PropTypes.func.isRequired
 };
 
+const defaultProps = {
+  handleClick: () => {}
+};
+
 const BackButton = ({ handleClick }) => (
   <Button text="Voltar" handleClick={handleClick} />
 );
 
 BackButton.propTypes = propTypes;
+BackButton.defaultProps = defaultProps;
 
 export default BackButton;

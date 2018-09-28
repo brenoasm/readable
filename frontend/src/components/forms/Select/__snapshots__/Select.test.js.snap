@@ -1,0 +1,381 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select matches the snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Select
+    className=""
+    errors={Array []}
+    handleChange={[Function]}
+    id="category"
+    name="category"
+    options={
+        Array [
+            Object {
+              "label": "react",
+              "value": "react",
+            },
+            Object {
+              "label": "redux",
+              "value": "redux",
+            },
+            Object {
+              "label": "udacity",
+              "value": "udacity",
+            },
+          ]
+    }
+    title="categories"
+    value="redux"
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <label
+          htmlFor="category"
+>
+          categories
+</label>,
+        <select
+          className=""
+          id="category"
+          name="category"
+          onChange={[Function]}
+          value="redux"
+>
+          <option
+                    value=""
+          >
+                    Selecione
+          </option>
+          <option
+                    value="react"
+          >
+                    react
+          </option>
+          <option
+                    value="redux"
+          >
+                    redux
+          </option>
+          <option
+                    value="udacity"
+          >
+                    udacity
+          </option>
+</select>,
+        <FormErrorMessage
+          errors={Array []}
+/>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "categories",
+          "htmlFor": "category",
+        },
+        "ref": null,
+        "rendered": "categories",
+        "type": "label",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <option
+              value=""
+>
+              Selecione
+</option>,
+            Array [
+              <option
+                value="react"
+>
+                react
+</option>,
+              <option
+                value="redux"
+>
+                redux
+</option>,
+              <option
+                value="udacity"
+>
+                udacity
+</option>,
+            ],
+          ],
+          "className": "",
+          "id": "category",
+          "name": "category",
+          "onChange": [Function],
+          "value": "redux",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "default",
+            "nodeType": "host",
+            "props": Object {
+              "children": "Selecione",
+              "value": "",
+            },
+            "ref": null,
+            "rendered": "Selecione",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": "react",
+            "nodeType": "host",
+            "props": Object {
+              "children": "react",
+              "value": "react",
+            },
+            "ref": null,
+            "rendered": "react",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": "redux",
+            "nodeType": "host",
+            "props": Object {
+              "children": "redux",
+              "value": "redux",
+            },
+            "ref": null,
+            "rendered": "redux",
+            "type": "option",
+          },
+          Object {
+            "instance": null,
+            "key": "udacity",
+            "nodeType": "host",
+            "props": Object {
+              "children": "udacity",
+              "value": "udacity",
+            },
+            "ref": null,
+            "rendered": "udacity",
+            "type": "option",
+          },
+        ],
+        "type": "select",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "errors": Array [],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <label
+            htmlFor="category"
+>
+            categories
+</label>,
+          <select
+            className=""
+            id="category"
+            name="category"
+            onChange={[Function]}
+            value="redux"
+>
+            <option
+                        value=""
+            >
+                        Selecione
+            </option>
+            <option
+                        value="react"
+            >
+                        react
+            </option>
+            <option
+                        value="redux"
+            >
+                        redux
+            </option>
+            <option
+                        value="udacity"
+            >
+                        udacity
+            </option>
+</select>,
+          <FormErrorMessage
+            errors={Array []}
+/>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "categories",
+            "htmlFor": "category",
+          },
+          "ref": null,
+          "rendered": "categories",
+          "type": "label",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <option
+                value=""
+>
+                Selecione
+</option>,
+              Array [
+                <option
+                  value="react"
+>
+                  react
+</option>,
+                <option
+                  value="redux"
+>
+                  redux
+</option>,
+                <option
+                  value="udacity"
+>
+                  udacity
+</option>,
+              ],
+            ],
+            "className": "",
+            "id": "category",
+            "name": "category",
+            "onChange": [Function],
+            "value": "redux",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "default",
+              "nodeType": "host",
+              "props": Object {
+                "children": "Selecione",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": "Selecione",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": "react",
+              "nodeType": "host",
+              "props": Object {
+                "children": "react",
+                "value": "react",
+              },
+              "ref": null,
+              "rendered": "react",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": "redux",
+              "nodeType": "host",
+              "props": Object {
+                "children": "redux",
+                "value": "redux",
+              },
+              "ref": null,
+              "rendered": "redux",
+              "type": "option",
+            },
+            Object {
+              "instance": null,
+              "key": "udacity",
+              "nodeType": "host",
+              "props": Object {
+                "children": "udacity",
+                "value": "udacity",
+              },
+              "ref": null,
+              "rendered": "udacity",
+              "type": "option",
+            },
+          ],
+          "type": "select",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "errors": Array [],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Icon from '../Icon';
+
 const propTypes = {
   handleEdit: PropTypes.func.isRequired,
   objectToEdit: PropTypes.object,
@@ -20,9 +22,9 @@ const StyledEditIcon = styled.span`
 
 const EditIcon = ({ handleEdit, objectToEdit, title }) => (
   <StyledEditIcon>
-    <i
+    <Icon
       title={title}
-      className="fas fa-pen"
+      icon="fas fa-pen"
       onClick={() => handleEdit(objectToEdit)}
     />
   </StyledEditIcon>

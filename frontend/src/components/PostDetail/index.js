@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import PostRow from '../../components/PostRow';
@@ -22,11 +21,12 @@ const propTypes = {
   editClick: PropTypes.func,
   modifyCommentVoteValues: PropTypes.func,
   deleteComment: PropTypes.func,
+  history: PropTypes.object
 };
 
 const defaultProps = {
-  post: {},
-  comments: [],
+  post: null,
+  comments: null,
   modifyPostVoteValues: () => {},
   deletePost: () => {},
   editPost: () => {},
@@ -34,6 +34,9 @@ const defaultProps = {
   editClick: () => {},
   modifyCommentVoteValues: () => {},
   deleteComment: () => {},
+  history: {
+    push: () => {}
+  }
 };
 
 const StyledPostDetail = styled.div`
@@ -90,12 +93,14 @@ const PostDetail = ({
                   <CommentForm />
                 </WithForm>
               </CommentFormContainer>
-              <CommentsList
-                comments={comments}
-                editClick={editClick}
-                deleteComment={deleteComment}
-                modifyCommentVoteValues={modifyCommentVoteValues}
-              />
+              {comments && Array.isArray(comments) && (
+                <CommentsList
+                  comments={comments}
+                  editClick={editClick}
+                  deleteComment={deleteComment}
+                  modifyCommentVoteValues={modifyCommentVoteValues}
+                />
+              )}
             </div>
           </PostRow>
         </StyledPostDetail>
@@ -107,4 +112,4 @@ const PostDetail = ({
 PostDetail.propTypes = propTypes;
 PostDetail.defaultProps = defaultProps;
 
-export default withRouter(PostDetail);
+export default PostDetail;

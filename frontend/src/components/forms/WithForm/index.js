@@ -5,14 +5,16 @@ import { setupFormProperties } from '../../../utils/setup-form-properties';
 import { isTheFormValid, runValidations } from '../../../utils/validations';
 
 const defaultProps = {
-  formProperties: {}
+  formProperties: {},
+  onSubmit: () => {},
+  onPropertyChanges: () => {}
 };
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   formProperties: PropTypes.object.isRequired,
-  onSubmit: PropTypes.func
-  // onPropertyChange: PropTypes.func.isRequired
+  onSubmit: PropTypes.func,
+  onPropertyChange: PropTypes.func
 };
 
 class WithForm extends Component {
@@ -25,20 +27,24 @@ class WithForm extends Component {
   }
 
   componentDidMount() {
+    const formProperties = setupFormProperties(this.props.formProperties);
+
     this.setState({
-      formProperties: setupFormProperties(this.props.formProperties)
+      formProperties
     });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.formProperties !== this.props.formProperties) {
+      const formProperties = setupFormProperties(this.props.formProperties);
+
       this.setState({
-        formProperties: setupFormProperties(this.props.formProperties)
+        formProperties
       });
     }
   }
 
-  handleInput = (e) => {
+  handleInput = e => {
     const { properties } = this.state.formProperties;
 
     const value = e.target.value;
@@ -65,9 +71,9 @@ class WithForm extends Component {
         }
       }
     }));
-  }
+  };
 
-  handleSubmit = (args) => {
+  handleSubmit = args => {
     const { properties, disabledSubmit } = this.state.formProperties;
 
     if (disabledSubmit) return false;
@@ -81,7 +87,7 @@ class WithForm extends Component {
     );
 
     this.props.onSubmit(propertiesToSubmit, args);
-  }
+  };
 
   handleClearForm = () => {
     const { properties } = this.state.formProperties;
@@ -115,16 +121,15 @@ class WithForm extends Component {
       <Fragment>
         {properties &&
           Object.keys(properties).length > 0 &&
-            React.Children.map(props.children, child =>
-              React.cloneElement(child, {
-                handleSubmit,
-                handleClearForm,
-                handleInput,
-                properties,
-                disabledSubmit
-              })
-            )
-        }
+          React.Children.map(props.children, child =>
+            React.cloneElement(child, {
+              handleSubmit,
+              handleClearForm,
+              handleInput,
+              properties,
+              disabledSubmit
+            })
+          )}
       </Fragment>
     );
   }

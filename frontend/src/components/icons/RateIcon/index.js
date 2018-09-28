@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Icon from '../Icon';
 
 const propTypes = {
   onClick: PropTypes.func,
@@ -25,9 +26,10 @@ const RateIcon = ({
   title
 }) => (
   <StyledRateIcon>
-    <i title={title}
-      onClick={() => onClick()}
-      className={rateDown ? "fas fa-caret-down" : "fas fa-caret-up" }
+    <Icon
+      title={title}
+      onClick={onClick}
+      icon={rateDown ? "fas fa-caret-down" : "fas fa-caret-up" }
     />
   </StyledRateIcon>
 );

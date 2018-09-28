@@ -44,7 +44,7 @@ class HomeContainer extends Component {
   }
 
   render() {
-    return <Home {...this.props} />;
+    return <Home {...this.props} activeRoute={this.props.location.pathname}/>;
   }
 }
 
@@ -72,6 +72,8 @@ const mapStateToProps = ({
   sortMethods: getSortMethods(sortMethodsState),
   selectedSortMethod: getSelectedSortMethod(sortMethodsState)
 });
+
+HomeContainer.displayName = 'HomeContainer';
 
 export default compose(
   withRouter,

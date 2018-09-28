@@ -1,12 +1,12 @@
-export const setupFormProperties = (formProperties = {}) => {
+export const setupFormProperties = (properties = {}) => {
   if (
-    Object.keys(formProperties).length === 0 &&
-    formProperties.constructor === Object
+    Object.keys(properties).length === 0 &&
+    properties.constructor === Object
   )
     return {};
 
-  const properties = Object.keys(formProperties).reduce((newObj, prop) => {
-    const param = formProperties[prop];
+  const parsedProperties = Object.keys(properties).reduce((newObj, prop) => {
+    const param = properties[prop];
 
     const value = '';
     const objectToReturn = {
@@ -26,9 +26,9 @@ export const setupFormProperties = (formProperties = {}) => {
         validations: param.validations && [
           ...param.validations.map(
             validation =>
-            typeof validation !== 'function' ?
-            Error('Invalid param. It should be a function') :
-            validation
+              typeof validation !== 'function'
+                ? Error('Invalid param. It should be a function')
+                : validation
           )
         ],
         name: prop
@@ -38,6 +38,6 @@ export const setupFormProperties = (formProperties = {}) => {
 
   return {
     disabledSubmit: true,
-    properties
+    properties: parsedProperties
   };
 };

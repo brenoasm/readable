@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Icon from '../Icon';
+
 const propTypes = {
   handleDelete: PropTypes.func.isRequired,
   objectToDelete: PropTypes.object,
@@ -20,9 +22,9 @@ const StyledEditIcon = styled.span`
 
 const DeleteIcon = ({ handleDelete, objectToDelete, title }) => (
   <StyledEditIcon>
-    <i
+    <Icon
       title={title}
-      className="fas fa-trash"
+      icon="fas fa-trash"
       onClick={() => handleDelete(objectToDelete)}
     />
   </StyledEditIcon>

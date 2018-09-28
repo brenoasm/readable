@@ -26,6 +26,10 @@ ShallowWrapper {
                     <Switch>
                               <Route
                                         component={[Function]}
+                                        path="/not-found"
+                              />
+                              <Route
+                                        component={[Function]}
                                         path="/posts/:id"
                               />
                               <Route
@@ -72,6 +76,10 @@ ShallowWrapper {
               <Switch>
                             <Route
                                           component={[Function]}
+                                          path="/not-found"
+                            />
+                            <Route
+                                          component={[Function]}
                                           path="/posts/:id"
                             />
                             <Route
@@ -104,6 +112,10 @@ ShallowWrapper {
               "children": <Switch>
                 <Route
                                 component={[Function]}
+                                path="/not-found"
+                />
+                <Route
+                                component={[Function]}
                                 path="/posts/:id"
                 />
                 <Route
@@ -126,6 +138,10 @@ ShallowWrapper {
                 "children": Array [
                   <Route
                     component={[Function]}
+                    path="/not-found"
+/>,
+                  <Route
+                    component={[Function]}
                     path="/posts/:id"
 />,
                   <Route
@@ -141,6 +157,18 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "component": [Function],
+                    "path": "/not-found",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
                 Object {
                   "instance": null,
                   "key": undefined,
@@ -219,6 +247,10 @@ ShallowWrapper {
                         <Switch>
                                     <Route
                                                 component={[Function]}
+                                                path="/not-found"
+                                    />
+                                    <Route
+                                                component={[Function]}
                                                 path="/posts/:id"
                                     />
                                     <Route
@@ -265,6 +297,10 @@ ShallowWrapper {
                 <Switch>
                                 <Route
                                                 component={[Function]}
+                                                path="/not-found"
+                                />
+                                <Route
+                                                component={[Function]}
                                                 path="/posts/:id"
                                 />
                                 <Route
@@ -297,6 +333,10 @@ ShallowWrapper {
                 "children": <Switch>
                   <Route
                                     component={[Function]}
+                                    path="/not-found"
+                  />
+                  <Route
+                                    component={[Function]}
                                     path="/posts/:id"
                   />
                   <Route
@@ -319,6 +359,10 @@ ShallowWrapper {
                   "children": Array [
                     <Route
                       component={[Function]}
+                      path="/not-found"
+/>,
+                    <Route
+                      component={[Function]}
                       path="/posts/:id"
 />,
                     <Route
@@ -334,6 +378,18 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "component": [Function],
+                      "path": "/not-found",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
                   Object {
                     "instance": null,
                     "key": undefined,

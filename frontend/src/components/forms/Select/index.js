@@ -14,7 +14,11 @@ const propTypes = {
     PropTypes.number
   ]),
   handleChange: PropTypes.func,
-  errors: PropTypes.arrayOf(PropTypes.string)
+  errors: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.value
+  }))
 };
 
 const defaultProps = {

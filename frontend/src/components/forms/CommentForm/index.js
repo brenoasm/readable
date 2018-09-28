@@ -9,9 +9,21 @@ import Input from '../Input';
 import TextArea from '../TextArea';
 import Button from '../../buttons/Button';
 
-const propTypes = {};
+const propTypes = {
+  handleClearForm: PropTypes.func.isRequired,
+  handleInput: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  properties: PropTypes.object.isRequired,
+  disabledSubmit: PropTypes.bool
+};
 
-const defaultProps = {};
+const defaultProps = {
+  handleClearForm: () => {},
+  handleInput: () => {},
+  handleSubmit: () => {},
+  properties: {},
+  disabledSubmit: false
+};
 
 const StyledCommentForm = styled.div`
   background-color: ${colors.primary.primaryFive};

@@ -33,7 +33,13 @@ const onClick = (event, fn) => {
   fn();
 };
 
-const Button = ({ type, textColor, color, handleClick, text, disabled }) => (
+const Button = ({
+  type,
+  textColor,
+  color,
+  handleClick,
+  text,
+  disabled }) => (
   <StyledButton
     type={type}
     onClick={(event) => onClick(event, handleClick)}
