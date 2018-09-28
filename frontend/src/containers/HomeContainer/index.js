@@ -12,6 +12,7 @@ import {
   getCategoryPosts,
   modifyPostVoteValues,
   editPost,
+  deletePost
 } from '../../actions/postsAction';
 
 import {
@@ -57,7 +58,8 @@ const mapDispatchToProps = dispatch => ({
   editPost: (post) => compose(
     dispatch(showModal()),
     dispatch(editPost(post)),
-  )
+  ),
+  deletePost: (post) => dispatch(deletePost(post))
 });
 
 const mapStateToProps = ({

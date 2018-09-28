@@ -60,7 +60,8 @@ const Home = ({
   selectedSortMethod,
   getSelectedSortMethod,
   showModal,
-  editPost
+  editPost,
+  deletePost
 }) => (
   <Fragment>
     <ToolsRow
@@ -79,6 +80,7 @@ const Home = ({
           modifyPostVoteValues={modifyPostVoteValues}
           sortMethod={selectedSortMethod}
           editPost={editPost}
+          deletePost={deletePost}
         />
       </div>
     </StyledHome>

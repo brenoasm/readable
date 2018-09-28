@@ -48,14 +48,14 @@ const PostRowTitle = ({ post, editPost, deletePost }) => (
           <EditIcon
             handleEdit={editPost}
             objectToEdit={post}
-            title="Editar esse comentário"
+            title="Editar esse post"
           />
         )}
         {deletePost && (
           <DeleteIcon
             handleDelete={deletePost}
             objectToDelete={post}
-            title="Remover esse comentário"
+            title="Remover esse post"
           />
         )}
       </div>

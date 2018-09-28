@@ -18,7 +18,7 @@ const StyledEditIcon = styled.span`
   cursor: pointer;
 `;
 
-const EditIcon = ({ handleDelete, objectToDelete, title }) => (
+const DeleteIcon = ({ handleDelete, objectToDelete, title }) => (
   <StyledEditIcon>
     <i
       title={title}
@@ -28,7 +28,7 @@ const EditIcon = ({ handleDelete, objectToDelete, title }) => (
   </StyledEditIcon>
 );
 
-EditIcon.propTypes = propTypes;
-EditIcon.defaultProps = defaultProps;
+DeleteIcon.propTypes = propTypes;
+DeleteIcon.defaultProps = defaultProps;
 
-export default EditIcon;
+export default DeleteIcon;
