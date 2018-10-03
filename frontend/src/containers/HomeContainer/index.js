@@ -52,7 +52,7 @@ const mapDispatchToProps = dispatch => ({
   getAllPosts: () => dispatch(getAllPosts()),
   getCategoryPosts: categoryName => dispatch(getCategoryPosts(categoryName)),
   modifyPostVoteValues: (post, vote) => dispatch(modifyPostVoteValues(post, vote)),
-  getSelectedSortMethod: value => dispatch(handleSortMethod(value)),
+  getSelectedSortMethod: (value) => dispatch(handleSortMethod(value)),
   showModal: () => dispatch(showModal()),
   fetchCategories: () => dispatch(fetchCategories()),
   editPost: (post) => compose(

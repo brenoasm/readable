@@ -4,19 +4,15 @@ import React from 'react';
 
 import CategoryList from './';
 
+import CategoryMock from '../../testHelpers/mocks/categories';
+
 describe('CategoryList', () => {
   let wrapper;
 
   beforeEach(() => {
     const categories = [
-      {
-        name: 'react',
-        path: 'react'
-      },
-      {
-        name: 'redux',
-        path: 'redux'
-      }
+      CategoryMock.categories[0],
+      CategoryMock.categories[1]
     ]
 
     wrapper = shallow(<CategoryList categories={categories} />);

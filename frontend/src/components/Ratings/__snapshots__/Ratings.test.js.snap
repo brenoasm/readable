@@ -1,15 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CategoryCard matches the snapshot 1`] = `
+exports[`Ratings matches the snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <CategoryCard
-    category={
-        Object {
-            "name": "react",
-            "path": "react",
-          }
-    }
+  Symbol(enzyme.__unrendered__): <Ratings
+    rateDown={[Function]}
+    rateUp={[Function]}
+    voteScore={0}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -22,18 +19,20 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
-        <h2>
-          react
-</h2>,
-        <Link
-          replace={false}
-          to="react"
->
-          Ver os detalhes
-</Link>,
+        <RateIcon
+          onClick={[Function]}
+          rateDown={false}
+          title="Gostei!"
+/>,
+        <span />,
+        <RateIcon
+          onClick={[Function]}
+          rateDown={true}
+          title="Não gostei!"
+/>,
       ],
     },
     "ref": null,
@@ -41,46 +40,61 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": "react",
+          "onClick": [Function],
+          "rateDown": false,
+          "title": "Gostei!",
         },
         "ref": null,
-        "rendered": "react",
-        "type": "h2",
+        "rendered": null,
+        "type": [Function],
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "host",
         "props": Object {
-          "children": "Ver os detalhes",
-          "replace": false,
-          "to": "react",
+          "children": 0,
         },
         "ref": null,
-        "rendered": "Ver os detalhes",
+        "rendered": 0,
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "onClick": [Function],
+          "rateDown": true,
+          "title": "Não gostei!",
+        },
+        "ref": null,
+        "rendered": null,
         "type": [Function],
       },
     ],
-    "type": [Function],
+    "type": Symbol(react.fragment),
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
-          <h2>
-            react
-</h2>,
-          <Link
-            replace={false}
-            to="react"
->
-            Ver os detalhes
-</Link>,
+          <RateIcon
+            onClick={[Function]}
+            rateDown={false}
+            title="Gostei!"
+/>,
+          <span />,
+          <RateIcon
+            onClick={[Function]}
+            rateDown={true}
+            title="Não gostei!"
+/>,
         ],
       },
       "ref": null,
@@ -88,29 +102,42 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": "react",
+            "onClick": [Function],
+            "rateDown": false,
+            "title": "Gostei!",
           },
           "ref": null,
-          "rendered": "react",
-          "type": "h2",
+          "rendered": null,
+          "type": [Function],
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "host",
           "props": Object {
-            "children": "Ver os detalhes",
-            "replace": false,
-            "to": "react",
+            "children": 0,
           },
           "ref": null,
-          "rendered": "Ver os detalhes",
+          "rendered": 0,
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "onClick": [Function],
+            "rateDown": true,
+            "title": "Não gostei!",
+          },
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
       ],
-      "type": [Function],
+      "type": Symbol(react.fragment),
     },
   ],
   Symbol(enzyme.__options__): Object {

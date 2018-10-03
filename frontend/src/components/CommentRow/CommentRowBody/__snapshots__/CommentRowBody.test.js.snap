@@ -11,7 +11,7 @@ ShallowWrapper {
             "deleted": false,
             "id": "1",
             "parentDeleted": false,
-            "parentId": "12",
+            "parentId": "1",
             "timestamp": 1538417732043,
             "voteScore": 1,
           }

@@ -7,8 +7,8 @@ ShallowWrapper {
     activeRoute="/redux"
     category={
         Object {
-            "name": "redux",
-            "path": "redux",
+            "name": "react",
+            "path": "react",
           }
     }
 />,
@@ -27,11 +27,11 @@ ShallowWrapper {
     "props": Object {
       "children": <Link
         replace={false}
-        to="redux"
+        to="react"
 >
-        redux
+        react
 </Link>,
-      "className": "active",
+      "className": "",
     },
     "ref": null,
     "rendered": Object {
@@ -39,12 +39,12 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": "redux",
+        "children": "react",
         "replace": false,
-        "to": "redux",
+        "to": "react",
       },
       "ref": null,
-      "rendered": "redux",
+      "rendered": "react",
       "type": [Function],
     },
     "type": [Function],
@@ -57,11 +57,11 @@ ShallowWrapper {
       "props": Object {
         "children": <Link
           replace={false}
-          to="redux"
+          to="react"
 >
-          redux
+          react
 </Link>,
-        "className": "active",
+        "className": "",
       },
       "ref": null,
       "rendered": Object {
@@ -69,12 +69,12 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "redux",
+          "children": "react",
           "replace": false,
-          "to": "redux",
+          "to": "react",
         },
         "ref": null,
-        "rendered": "redux",
+        "rendered": "react",
         "type": [Function],
       },
       "type": [Function],

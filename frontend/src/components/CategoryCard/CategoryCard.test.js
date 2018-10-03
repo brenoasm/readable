@@ -4,14 +4,13 @@ import React from 'react';
 
 import CategoryCard from './';
 
+import CategoryMock from '../../testHelpers/mocks/categories';
+
 describe('CategoryCard', () => {
   let wrapper;
 
   beforeEach(() => {
-    const category = {
-      name: 'redux',
-      path: 'redux'
-    };
+    const category = CategoryMock.categories[0];
 
     wrapper = shallow(<CategoryCard category={category} />);
   })

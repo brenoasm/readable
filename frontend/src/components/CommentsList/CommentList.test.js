@@ -4,32 +4,16 @@ import React from 'react';
 
 import CommentsList from './';
 
+import CommentMock from '../../testHelpers/mocks/comments';
+
 describe('CommentsList', () => {
   let wrapper;
 
   beforeEach(() => {
     const initialState = {
       comments: [
-        {
-          id: '1',
-          parentId: '12',
-          timestamp: 1538417732043,
-          body: 'Test',
-          author: 'Breno',
-          voteScore: 1,
-          deleted: false,
-          parentDeleted: false
-        },
-        {
-          id: '2',
-          parentId: '12',
-          timestamp: 1538419906880,
-          body: 'Test 2',
-          author: 'Joãozinho',
-          voteScore: 2,
-          deleted: false,
-          parentDeleted: false
-        },
+        CommentMock.comments[0],
+        CommentMock.comments[1]
       ],
       deleteComment: jest.fn(),
       editClick: jest.fn(),

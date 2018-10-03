@@ -10,26 +10,26 @@ ShallowWrapper {
     posts={
         Array [
             Object {
-              "author": "thingtwo",
-              "body": "Everyone says so after all.",
-              "category": "react",
-              "commentCount": 2,
-              "deleted": false,
-              "id": "8xf0y6ziyjabvozdd253nd",
-              "timestamp": 1467166872634,
-              "title": "Udacity is the best place to learn React",
-              "voteScore": 6,
-            },
-            Object {
               "author": "thingone",
               "body": "Just kidding. It takes more than 10 minutes to learn technology.",
               "category": "redux",
               "commentCount": 0,
               "deleted": false,
-              "id": "6ni6ok3ym7mf1p33lnez",
+              "id": "1",
               "timestamp": 1468479767190,
               "title": "Learn Redux in 10 minutes!",
-              "voteScore": -5,
+              "voteScore": 1,
+            },
+            Object {
+              "author": "thingtwo",
+              "body": "Everyone says so after all.",
+              "category": "react",
+              "commentCount": 1,
+              "deleted": false,
+              "id": "2",
+              "timestamp": 1467166872634,
+              "title": "Udacity is the best place to learn React",
+              "voteScore": -1,
             },
           ]
     }
@@ -61,10 +61,10 @@ ShallowWrapper {
                                         "category": "redux",
                                         "commentCount": 0,
                                         "deleted": false,
-                                        "id": "6ni6ok3ym7mf1p33lnez",
+                                        "id": "1",
                                         "timestamp": 1468479767190,
                                         "title": "Learn Redux in 10 minutes!",
-                                        "voteScore": -5,
+                                        "voteScore": 1,
                                       }
                     }
           />
@@ -79,12 +79,12 @@ ShallowWrapper {
                                         "author": "thingtwo",
                                         "body": "Everyone says so after all.",
                                         "category": "react",
-                                        "commentCount": 2,
+                                        "commentCount": 1,
                                         "deleted": false,
-                                        "id": "8xf0y6ziyjabvozdd253nd",
+                                        "id": "2",
                                         "timestamp": 1467166872634,
                                         "title": "Udacity is the best place to learn React",
-                                        "voteScore": 6,
+                                        "voteScore": -1,
                                       }
                     }
           />
@@ -95,7 +95,7 @@ ShallowWrapper {
     "rendered": Array [
       Object {
         "instance": null,
-        "key": "6ni6ok3ym7mf1p33lnez",
+        "key": "1",
         "nodeType": "host",
         "props": Object {
           "children": <PostRow
@@ -109,10 +109,10 @@ ShallowWrapper {
                                     "category": "redux",
                                     "commentCount": 0,
                                     "deleted": false,
-                                    "id": "6ni6ok3ym7mf1p33lnez",
+                                    "id": "1",
                                     "timestamp": 1468479767190,
                                     "title": "Learn Redux in 10 minutes!",
-                                    "voteScore": -5,
+                                    "voteScore": 1,
                                   }
             }
 />,
@@ -132,10 +132,10 @@ ShallowWrapper {
               "category": "redux",
               "commentCount": 0,
               "deleted": false,
-              "id": "6ni6ok3ym7mf1p33lnez",
+              "id": "1",
               "timestamp": 1468479767190,
               "title": "Learn Redux in 10 minutes!",
-              "voteScore": -5,
+              "voteScore": 1,
             },
           },
           "ref": null,
@@ -146,7 +146,7 @@ ShallowWrapper {
       },
       Object {
         "instance": null,
-        "key": "8xf0y6ziyjabvozdd253nd",
+        "key": "2",
         "nodeType": "host",
         "props": Object {
           "children": <PostRow
@@ -158,12 +158,12 @@ ShallowWrapper {
                                     "author": "thingtwo",
                                     "body": "Everyone says so after all.",
                                     "category": "react",
-                                    "commentCount": 2,
+                                    "commentCount": 1,
                                     "deleted": false,
-                                    "id": "8xf0y6ziyjabvozdd253nd",
+                                    "id": "2",
                                     "timestamp": 1467166872634,
                                     "title": "Udacity is the best place to learn React",
-                                    "voteScore": 6,
+                                    "voteScore": -1,
                                   }
             }
 />,
@@ -181,12 +181,12 @@ ShallowWrapper {
               "author": "thingtwo",
               "body": "Everyone says so after all.",
               "category": "react",
-              "commentCount": 2,
+              "commentCount": 1,
               "deleted": false,
-              "id": "8xf0y6ziyjabvozdd253nd",
+              "id": "2",
               "timestamp": 1467166872634,
               "title": "Udacity is the best place to learn React",
-              "voteScore": 6,
+              "voteScore": -1,
             },
           },
           "ref": null,
@@ -217,10 +217,10 @@ ShallowWrapper {
                                                 "category": "redux",
                                                 "commentCount": 0,
                                                 "deleted": false,
-                                                "id": "6ni6ok3ym7mf1p33lnez",
+                                                "id": "1",
                                                 "timestamp": 1468479767190,
                                                 "title": "Learn Redux in 10 minutes!",
-                                                "voteScore": -5,
+                                                "voteScore": 1,
                                               }
                         }
             />
@@ -235,12 +235,12 @@ ShallowWrapper {
                                                 "author": "thingtwo",
                                                 "body": "Everyone says so after all.",
                                                 "category": "react",
-                                                "commentCount": 2,
+                                                "commentCount": 1,
                                                 "deleted": false,
-                                                "id": "8xf0y6ziyjabvozdd253nd",
+                                                "id": "2",
                                                 "timestamp": 1467166872634,
                                                 "title": "Udacity is the best place to learn React",
-                                                "voteScore": 6,
+                                                "voteScore": -1,
                                               }
                         }
             />
@@ -251,7 +251,7 @@ ShallowWrapper {
       "rendered": Array [
         Object {
           "instance": null,
-          "key": "6ni6ok3ym7mf1p33lnez",
+          "key": "1",
           "nodeType": "host",
           "props": Object {
             "children": <PostRow
@@ -265,10 +265,10 @@ ShallowWrapper {
                                           "category": "redux",
                                           "commentCount": 0,
                                           "deleted": false,
-                                          "id": "6ni6ok3ym7mf1p33lnez",
+                                          "id": "1",
                                           "timestamp": 1468479767190,
                                           "title": "Learn Redux in 10 minutes!",
-                                          "voteScore": -5,
+                                          "voteScore": 1,
                                         }
               }
 />,
@@ -288,10 +288,10 @@ ShallowWrapper {
                 "category": "redux",
                 "commentCount": 0,
                 "deleted": false,
-                "id": "6ni6ok3ym7mf1p33lnez",
+                "id": "1",
                 "timestamp": 1468479767190,
                 "title": "Learn Redux in 10 minutes!",
-                "voteScore": -5,
+                "voteScore": 1,
               },
             },
             "ref": null,
@@ -302,7 +302,7 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": "8xf0y6ziyjabvozdd253nd",
+          "key": "2",
           "nodeType": "host",
           "props": Object {
             "children": <PostRow
@@ -314,12 +314,12 @@ ShallowWrapper {
                                           "author": "thingtwo",
                                           "body": "Everyone says so after all.",
                                           "category": "react",
-                                          "commentCount": 2,
+                                          "commentCount": 1,
                                           "deleted": false,
-                                          "id": "8xf0y6ziyjabvozdd253nd",
+                                          "id": "2",
                                           "timestamp": 1467166872634,
                                           "title": "Udacity is the best place to learn React",
-                                          "voteScore": 6,
+                                          "voteScore": -1,
                                         }
               }
 />,
@@ -337,12 +337,12 @@ ShallowWrapper {
                 "author": "thingtwo",
                 "body": "Everyone says so after all.",
                 "category": "react",
-                "commentCount": 2,
+                "commentCount": 1,
                 "deleted": false,
-                "id": "8xf0y6ziyjabvozdd253nd",
+                "id": "2",
                 "timestamp": 1467166872634,
                 "title": "Udacity is the best place to learn React",
-                "voteScore": 6,
+                "voteScore": -1,
               },
             },
             "ref": null,

@@ -4,15 +4,14 @@ import React from 'react';
 
 import CategoryRow from './';
 
+import CategoryMock from '../../testHelpers/mocks/categories';
+
 describe('CategoryRow', () => {
 
 
   it('matches the snapshot', () => {
     const initialState = {
-      category: {
-        name: 'redux',
-        path: 'redux'
-      },
+      category: CategoryMock.categories[0],
       activeRoute: '/redux'
     };
 
@@ -23,10 +22,7 @@ describe('CategoryRow', () => {
 
   it('should be the active route', () => {
     const initialState = {
-      category: {
-        name: 'redux',
-        path: 'redux'
-      },
+      category: CategoryMock.categories[1],
       activeRoute: '/redux'
     };
 
@@ -37,10 +33,7 @@ describe('CategoryRow', () => {
 
   it('should not be the active route', () => {
     const initialState = {
-      category: {
-        name: 'redux',
-        path: 'redux'
-      },
+      category: CategoryMock.categories[1],
       activeRoute: '/react'
     };
 

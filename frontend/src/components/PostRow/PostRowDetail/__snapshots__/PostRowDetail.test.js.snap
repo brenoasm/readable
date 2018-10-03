@@ -4,21 +4,19 @@ exports[`PostRowDetail matches the snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <PostRowDetail
-    author="thingone"
-    body="Just kidding. It takes more than 10 minutes to learn technology."
-    category="redux"
-    commentCount={0}
-    deleted={false}
-    id="6ni6ok3ym7mf1p33lnez"
     post={
         Object {
-            "author": "",
-            "timestamp": null,
+            "author": "thingone",
+            "body": "Just kidding. It takes more than 10 minutes to learn technology.",
+            "category": "redux",
+            "commentCount": 0,
+            "deleted": false,
+            "id": "1",
+            "timestamp": 1468479767190,
+            "title": "Learn Redux in 10 minutes!",
+            "voteScore": 1,
           }
     }
-    timestamp={1468479767190}
-    title="Learn Redux in 10 minutes!"
-    voteScore={-5}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -35,7 +33,9 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <span>
-          <strong />
+          <strong>
+                    thingone
+          </strong>
 </span>,
         <span>
           <small>
@@ -44,6 +44,7 @@ ShallowWrapper {
                               title="Data da postagem"
                     />
                       
+                    14/07/2016 04:07
           </small>
 </span>,
       ],
@@ -55,7 +56,9 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <strong />,
+          "children": <strong>
+            thingone
+</strong>,
         },
         "ref": null,
         "rendered": Object {
@@ -63,10 +66,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "",
+            "children": "thingone",
           },
           "ref": null,
-          "rendered": "",
+          "rendered": "thingone",
           "type": "strong",
         },
         "type": "span",
@@ -82,6 +85,7 @@ ShallowWrapper {
                         title="Data da postagem"
             />
               
+            14/07/2016 04:07
 </small>,
         },
         "ref": null,
@@ -96,7 +100,7 @@ ShallowWrapper {
                 title="Data da postagem"
 />,
               "  ",
-              false,
+              "14/07/2016 04:07",
             ],
           },
           "ref": null,
@@ -114,7 +118,7 @@ ShallowWrapper {
               "type": "i",
             },
             "  ",
-            false,
+            "14/07/2016 04:07",
           ],
           "type": "small",
         },
@@ -131,7 +135,9 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <span>
-            <strong />
+            <strong>
+                        thingone
+            </strong>
 </span>,
           <span>
             <small>
@@ -140,6 +146,7 @@ ShallowWrapper {
                                     title="Data da postagem"
                         />
                           
+                        14/07/2016 04:07
             </small>
 </span>,
         ],
@@ -151,7 +158,9 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <strong />,
+            "children": <strong>
+              thingone
+</strong>,
           },
           "ref": null,
           "rendered": Object {
@@ -159,10 +168,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "",
+              "children": "thingone",
             },
             "ref": null,
-            "rendered": "",
+            "rendered": "thingone",
             "type": "strong",
           },
           "type": "span",
@@ -178,6 +187,7 @@ ShallowWrapper {
                             title="Data da postagem"
               />
                 
+              14/07/2016 04:07
 </small>,
           },
           "ref": null,
@@ -192,7 +202,7 @@ ShallowWrapper {
                   title="Data da postagem"
 />,
                 "  ",
-                false,
+                "14/07/2016 04:07",
               ],
             },
             "ref": null,
@@ -210,7 +220,7 @@ ShallowWrapper {
                 "type": "i",
               },
               "  ",
-              false,
+              "14/07/2016 04:07",
             ],
             "type": "small",
           },

@@ -4,21 +4,14 @@ import React from 'react';
 
 import CommentRowBody from './';
 
+import CommentMock from '../../../testHelpers/mocks/comments';
+
 describe('CommentRowbody', () => {
   let wrapper;
 
   beforeEach(() => {
     const initialState = {
-      comment: {
-        id: '1',
-        parentId: '12',
-        timestamp: 1538417732043,
-        body: 'Test',
-        author: 'Breno',
-        voteScore: 1,
-        deleted: false,
-        parentDeleted: false
-      },
+      comment: CommentMock.comments[0],
       modifyCommentVoteValues: jest.fn()
     };
 
