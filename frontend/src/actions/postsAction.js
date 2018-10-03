@@ -35,12 +35,12 @@ export const submitPost = post => dispatch => {
   };
 
   if (post.id) {
-    axios
+    return axios
       .put(`http://localhost:3001/posts/${id}`, body, header)
       .then(({ data }) => dispatch(updatePost(data)))
       .catch(err => console.error(err));
   } else {
-    axios
+    return axios
       .post(`http://localhost:3001/posts`, body, header)
       .then(({ data }) => dispatch(createPost(data)))
       .catch(err => console.error(err));
@@ -50,7 +50,7 @@ export const submitPost = post => dispatch => {
 export const getCategoryPosts = category => dispatch => {
   const url = `http://localhost:3001/${category}/posts`;
 
-  axios
+  return axios
     .get(url, header)
     .then(({ data }) => dispatch(handlePosts(data)))
     .catch(err => console.log(err));
@@ -59,7 +59,7 @@ export const getCategoryPosts = category => dispatch => {
 export const getAllPosts = () => dispatch => {
   const url = `http://localhost:3001/posts`;
 
-  axios
+  return axios
     .get(url, header)
     .then(({ data }) => dispatch(handlePosts(data)))
     .catch(err => console.log(err));
@@ -72,7 +72,7 @@ export const modifyPostVoteValues = (post, vote) => dispatch => {
     option: vote
   };
 
-  axios
+  return axios
     .post(url, body, header)
     .then(({ data }) => dispatch(updatePost(data)))
     .catch(err => console.log(err));
@@ -81,7 +81,7 @@ export const modifyPostVoteValues = (post, vote) => dispatch => {
 export const handleGetPost = id => dispatch => {
   const url = `http://localhost:3001/posts/${id}`;
 
-  axios
+  return axios
     .get(url, header)
     .then(({ data }) => {
       dispatch(handleGetComments(id));
@@ -123,7 +123,7 @@ export const updatePost = post => ({
 export const deletePost = post => dispatch => {
   const url = `http://localhost:3001/posts/${post.id}`;
 
-  axios.delete(url, header)
+  return axios.delete(url, header)
     .then(({data}) => dispatch(handleDeletePost(data)))
     .catch(err => console.log(err));
 };

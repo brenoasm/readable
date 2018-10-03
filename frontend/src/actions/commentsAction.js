@@ -22,7 +22,7 @@ export const modifyCommentVoteValues = (comment, vote) => dispatch => {
     option: vote
   };
 
-  axios
+  return axios
     .post(url, body, header)
     .then(({ data }) => dispatch(updateComment(data)))
     .catch(err => console.log(err));
@@ -31,10 +31,8 @@ export const modifyCommentVoteValues = (comment, vote) => dispatch => {
 export const handleGetComments = postId => dispatch => {
   const url = `http://localhost:3001/posts/${postId}/comments`;
 
-  axios.get(url, header)
-    .then(({
-      data
-    }) => dispatch(handleComments(data)))
+  return axios.get(url, header)
+    .then(({data}) => dispatch(handleComments(data)))
 };
 
 export const handleDeleteComment = (id) => ({
@@ -62,11 +60,11 @@ export const submitComment = (comment, parentId) => dispatch => {
   };
 
   if (comment.id) {
-    axios.put(`http://localhost:3001/comments/${comment.id}`, body, header)
+    return axios.put(`http://localhost:3001/comments/${comment.id}`, body, header)
       .then(({data}) => dispatch(updateComment(data)))
       .catch(err => console.error(err));
   } else {
-    axios.post('http://localhost:3001/comments', body, header)
+    return axios.post('http://localhost:3001/comments', body, header)
       .then(({data}) => {
         dispatch(createComment(data))
         dispatch(changeCommentsCount(ADD))
@@ -88,7 +86,7 @@ export const createComment = comment => ({
 export const deleteComment = id => dispatch => {
   const url = `http://localhost:3001/comments/${id}`;
 
-  axios.delete(url, header)
+  return axios.delete(url, header)
     .then(() => {
       dispatch(handleDeleteComment(id))
       dispatch(changeCommentsCount(SUBTRACT))

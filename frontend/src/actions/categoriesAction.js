@@ -7,7 +7,7 @@ import header from '../utils/header';
 export const fetchCategories = () => dispatch => {
   const url = 'http://localhost:3001/categories';
 
-  axios.get(url, header)
+  return axios.get(url, header)
     .then(({data}) => dispatch(handleCategories(data)))
     .catch(err => console.log(err))
 };

@@ -2,38 +2,27 @@
 
 import moxios from 'moxios';
 
-import { categoryState } from '../reducers';
-
 import * as actions from './categoriesAction';
 import * as types from './';
+
+import CategoryMock from '../testHelpers/mocks/categories';
 
 describe('CategoriesActions', () => {
   let store;
 
   const categories = [
-    {
-      name: 'react',
-      path: 'react'
-    },
-    {
-      name: 'redux',
-      path: 'redux'
-    },
-    {
-      name: 'udacity',
-      path: 'udacity'
-    }
+    CategoryMock.categories[0],
+    CategoryMock.categories[1],
+    CategoryMock.categories[2]
   ];
 
   beforeEach(() => {
-    store = mockStore({ categoryState });
+    store = mockStore({});
 
     moxios.install();
   });
 
   afterEach(() => {
-    store = mockStore({});
-
     moxios.uninstall();
   });
 
@@ -53,20 +42,16 @@ describe('CategoriesActions', () => {
 
       request.respondWith({
         status: 200,
-        response: {
-          data: categories
-        }
+        response: categories
       });
-
-      const expectedActions = [
-        { type: types.GET_CATEGORIES, payload: categories }
-      ];
-
-      return store.dispatch(actions.fetchCategories())
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        });
     });
 
+    const expectedActions = [
+      { type: types.GET_CATEGORIES, payload: categories }
+    ];
+
+    return store.dispatch(actions.fetchCategories()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   });
 });
