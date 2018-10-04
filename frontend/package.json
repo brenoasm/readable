@@ -6,6 +6,7 @@
     "@material-ui/core": "^1.4.3",
     "axios": "^0.18.0",
     "final-form": "^4.9.1",
+    "jest-diff": "^23.6.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",

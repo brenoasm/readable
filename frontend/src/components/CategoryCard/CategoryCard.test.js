@@ -13,13 +13,13 @@ describe('CategoryCard', () => {
     const category = CategoryMock.categories[0];
 
     wrapper = shallow(<CategoryCard category={category} />);
-  })
+  });
 
   afterEach(() => {
     wrapper.unmount();
-  })
+  });
 
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
-  })
+  });
 });

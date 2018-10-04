@@ -16,17 +16,17 @@ describe('CategoryList', () => {
     ]
 
     wrapper = shallow(<CategoryList categories={categories} />);
-  })
+  });
 
   afterEach(() => {
     wrapper.unmount();
-  })
+  });
 
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
-  })
+  });
 
   it('renders three children', () => {
     expect(wrapper.children().length).toEqual(3); // Categorias + o Home que é fixo
-  })
+  });
 });

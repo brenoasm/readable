@@ -24,7 +24,25 @@ const CommentMock = {
     },
   ],
   formProperties: {
-
+    id: {
+      isFormField: false
+    },
+    parentId: {
+      isFormField: false
+    },
+    timestamp: {
+      isFormField: false
+    },
+    body: {
+      validations: [() => {}],
+      isFormField: true,
+      isValid: null,
+    },
+    author: {
+      validations: [() => {}],
+      isFormField: true,
+      isValid: null,
+    }
   }
 };
 

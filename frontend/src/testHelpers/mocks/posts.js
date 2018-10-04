@@ -24,7 +24,40 @@ const PostMock = {
       commentCount: 1
     },
   ],
-  formProperties: {}
+  formProperties: {
+    id: {
+      isFormField: false
+    },
+    timestamp: {
+      isFormField: false
+    },
+    title: {
+      validations: [() => {}],
+      isFormField: true,
+      isValid: null
+    },
+    body: {
+      validations: [() => {}],
+      isFormField: true,
+      isValid: null
+    },
+    author: {
+      validations: [() => {}],
+      isFormField: true,
+      isValid: null
+    },
+    category: {
+      validations: [() => {}],
+      isFormField: true,
+      isValid: null,
+      options: [
+        {
+          label: '',
+          value: ''
+        }
+      ]
+    }
+  }
 };
 
 export default PostMock;
