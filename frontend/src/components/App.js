@@ -38,7 +38,7 @@ const App = ({
       <BrowserRouter>
         <Switch>
           <Route path="/not-found" component={NotFound} />
-          <Route path="/posts/:id" component={PostDetailContainer} />
+          <Route path="/:category/:id" component={PostDetailContainer} />
           <Route path="/:categoryName" component={HomeContainer} />
           <Route path="/" exact component={HomeContainer} />
         </Switch>
